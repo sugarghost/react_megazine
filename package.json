@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.8.2",
-    "@types/react-redux": "^7.1.24",
-    "create-react-app": "^5.0.1",
-    "react-devtools": "^4.24.7",
-    "recoil": "^0.7.3"
-  }
-}
