@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.3.0",
@@ -18,15 +19,17 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.39.1",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.3",
+    "styled-components": "^5.3.5",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "set PORT=12345 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "set PORT=12345 && craco start",
+    "build": "craco build",
+    "test": "craco test",
     "lint": "eslint ./src/**/*.{ts,tsx,js,jsx}",
     "lint:fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx}",
     "prettier": "prettier --write ./src/**/*.{ts,tsx}",
@@ -39,6 +42,14 @@
       "react-app/jest"
     ],
     "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
       {
         "files": [
           "**/*.stories.*"
@@ -72,10 +83,11 @@
     "@storybook/node-logger": "^6.5.8",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.8",
-    "@storybook/testing-library": "^0.0.12",
+    "@storybook/testing-library": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "craco-alias": "^3.0.1",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -84,7 +96,6 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "eslint-plugin-storybook": "^0.5.12",
     "prettier": "^2.6.2",
     "prop-types": "^15.8.1",
     "webpack": "^5.73.0"
