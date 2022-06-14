@@ -10,14 +10,11 @@ export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?:number;
   minLength?:number;
-
+  inputValue?:any;
   [prop: string]: any;
 }
 
-export interface LabelProps {
-  borderSize?: number;
-  round?: number;
-}
+
 
 export interface ComponentProps extends InputProps {
   borderSize?: number;
@@ -45,7 +42,7 @@ const StyledInput = styled.input<InputProps>`
     }
   }}
 `
-const StyledLabel = styled.label<LabelProps>`
+const StyledLabel = styled.label<InputProps>`
   display:inline-block;
   border: ${(props) => props.borderSize ? `${props.borderSize}px solid #ccc` : 'none'};
   border-radius: ${(props) => props.round ? `${props.round}em` : 'none'};
@@ -54,15 +51,16 @@ const StyledLabel = styled.label<LabelProps>`
 function Input({
                  id, name, borderSize, round,placeholder,
                  type = "text", padding = "normal", children,
-                 required=false,onChange,maxLength=524288, minLength=0
+                 required=false,onChange,maxLength=524288, minLength=0,inputValue,
                }: ComponentProps) {
+
   return (
     <StyledLabel borderSize={borderSize} round={round}>
       {children}
       <StyledInput type={type} name={name} id={id} padding={padding}
                    required={required} placeholder={placeholder}
                    maxLength={maxLength} minLength={minLength}
-                   onChange={onChange}/>
+                   onChange={onChange} ref={inputValue}/>
     </StyledLabel>
   )
 }

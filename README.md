@@ -24,25 +24,30 @@
     │   │   └── TextArea
     │   ├── molecules		# molecules 컴포넌트
     │   │   ├── TopBar
-    │   │   ├── LabelWithInput
+    │   │   ├── LoginForm
+    │   │   ├── RegisterForm
     │   │   ├── LinkToButton
     │   │   ├── SubmitButton
     │   │   ├── LikeButton
     │   │   ├── LoginButton
     │   │   ├── LinkToButton
     │   │   ├── AddImgInput
+    │   │   ├── PostContent
+    │   │   ├── PostTopBar
+    │   │   ├── PostLikeInfo
     │   │   └── UserThumb
     │   └── organisms		# organisms 컴포넌트
-    │   │   ├── LoginForm
+    │   │   ├── LoginContainer
+    │   │   ├── RegisterContainer
     │   │   ├── Navigation
-    │   │   ├── PostLikeBar
-    │   │   ├── PostInfoBar
-    │   │   ├── PostContent
+    │   │   ├── PostUnit
     │   │   └── PostWriteForm
 	└── templates
-    │   ├── ListTemplate
-    │   ├── ListTemplate
-    │   └── ListTemplate
+    │   ├── LoginTemplate
+    │   ├── RegisterTemplate
+    │   ├── PostListTemplate
+    │   ├── WriteTemplate
+    │   └── MypageTemplate
     └── pages     
         ├── Login
         ├── Register
