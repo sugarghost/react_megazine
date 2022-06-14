@@ -1,0 +1,53 @@
+{
+  "posts": {
+    "post_list": [
+      {
+        "nickname": "name",
+        "post_id": 0,
+        "title": "title",
+        "content": "content",
+        "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
+        "like_by_me": true,
+        "like_count": 10,
+        "view_count": 15,
+        "created_at": "date",
+        "modified_at": "date",
+        "template": "center"
+      },
+      {
+        "nickname": "name",
+        "post_id": 1,
+        "title": "title",
+        "content": "content",
+        "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
+        "like_by_me": true,
+        "like_count": 10,
+        "view_count": 15,
+        "created_at": "date",
+        "modified_at": "date",
+        "template": "center"
+      },
+      {
+        "nickname": "name",
+        "post_id": 2,
+        "title": "title",
+        "content": "content",
+        "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
+        "like_by_me": true,
+        "like_count": 10,
+        "view_count": 15,
+        "created_at": "date",
+        "modified_at": "date",
+        "template": "center"
+      }
+    ]
+  },
+  "user": {
+    "name": "이름",
+    "nickname": "닉네임",
+    "email": "test@email.com",
+    "introduce": "자기소개",
+    "profile_image_url":"https://i.pinimg.com/originals/b4/69/8b/b4698b5caa57d6c13868b79170c8c945.jpg",
+    "createdAt": "Data"
+  }
+}
