@@ -43,11 +43,7 @@
     ]
   },
   "user": {
-    "name": "이름",
-    "nickname": "닉네임",
-    "email": "test@email.com",
-    "introduce": "자기소개",
-    "profile_image_url":"https://i.pinimg.com/originals/b4/69/8b/b4698b5caa57d6c13868b79170c8c945.jpg",
-    "createdAt": "Data"
+    "userId": "aest",
+    "password": "aest"
   }
 }
