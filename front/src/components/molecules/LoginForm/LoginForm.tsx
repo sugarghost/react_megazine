@@ -33,8 +33,8 @@ function LoginForm(){
 
   return(
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-    <Input id="userId" register = {register('userId', {required:true})}>ddd</Input>
-    <Input id="password" register = {register('password', {required:true})}>ddd</Input>
+    <Input id="userId" register = {register('userId', {required:true})}>아이디</Input>
+    <Input id="password" register = {register('password', {required:true})}>패스워드</Input>
     <Button type="submit" size="big">으앙</Button>
     </StyledForm>
   )

@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "@atoms/Buttons";
+import RegisteContainer from "@organisms/RegisteContainer";
 
 function Register(){
   return(
-    <Button size="small">회원가입</Button>
+      <RegisteContainer/>
   )
 }
 
