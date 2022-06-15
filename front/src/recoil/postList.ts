@@ -3,6 +3,7 @@ import {atom} from "recoil";
 import {PostListType} from "../interfaces/ApiDataType";
 
 // 업데이트 시킬 Todos atom 배열
+// eslint-disable-next-line import/prefer-default-export
 export const postListState = atom<PostListType[]>({
   key: 'postList',
   // default에는 임의의 데이터를 넣어줍시다.
