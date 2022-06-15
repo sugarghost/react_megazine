@@ -40,7 +40,7 @@
     │   │   ├── LoginContainer
     │   │   ├── RegisterContainer
     │   │   ├── Navigation
-    │   │   ├── PostUnit
+    │   │   ├── PostList
     │   │   └── PostWriteForm
 	└── templates
     │   ├── LoginTemplate
