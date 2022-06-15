@@ -1,7 +1,8 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
 import styled, {ThemeProvider} from 'styled-components';
-
+import { RecoilRoot } from 'recoil';
+import {QueryClient, QueryClientProvider} from 'react-query';
 import PostList from "@pages/List";
 import Login from "@pages/Login";
 import Mypage from "@pages/Mypage";
@@ -17,20 +18,25 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+const queryClient = new QueryClient();
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-        <Container>
-          <Routes>
-            <Route path='/' element={<PostList/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route path='/mypage' element={<Mypage/>}/>x
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/write' element={<Write/>}/>
-          </Routes>
-        </Container>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle/>
+          <Container>
+            <Routes>
+              <Route path='/' element={<PostList/>}/>
+              <Route path='/register' element={<Register/>}/>
+              <Route path='/mypage' element={<Mypage/>}/>x
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/write' element={<Write/>}/>
+            </Routes>
+          </Container>
+        </ThemeProvider>
+      </RecoilRoot>
+    </QueryClientProvider>
   )
     ;
 }
