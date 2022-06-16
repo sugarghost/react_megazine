@@ -14,7 +14,7 @@ const axiosApi = (url: string, options?: object) => {
 };
 
 const axiosAuthApi = (url: string, options?: object) => {
-  const token = localStorage.getItem('userToken');
+  const token = sessionStorage.getItem('userToken');
   const instance = axios.create({
     baseURL: url,
     headers: { Authorization: `Bearer ${token}`},

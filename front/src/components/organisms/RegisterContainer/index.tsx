@@ -1,14 +1,14 @@
 import React from "react";
-import RegisteForm from "@molecules/RegisteForm/RegisteForm";
+import RegisterForm from "@molecules/RegisterForm/RegisterForm";
 import Title from "@atoms/Title";
 
-function RegisteContainer() {
+function RegisterContainer() {
   return (
     <div>
       <Title content="회원가입" importance="h2"/>
-      <RegisteForm/>
+      <RegisterForm/>
     </div>
   )
 }
 
-export default RegisteContainer
+export default RegisterContainer
