@@ -18,10 +18,11 @@ const NavContainer = styled.div`
 function Navi() {
   return (
     <NavContainer>
-      <NavButton linkUrl="/">
+
+      <NavButton linkUrl="/write">
         <FontAwesomeIcon icon="pen"/>
       </NavButton>
-      <NavButton linkUrl="/write">
+      <NavButton linkUrl="/">
         <FontAwesomeIcon icon="bars"/>
       </NavButton>
       {/*
