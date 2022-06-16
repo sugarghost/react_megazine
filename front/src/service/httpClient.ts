@@ -14,10 +14,10 @@ const axiosApi = (url: string, options?: object) => {
 };
 
 const axiosAuthApi = (url: string, options?: object) => {
-  const token = 'ddd';
+  const token = localStorage.getItem('userToken');
   const instance = axios.create({
     baseURL: url,
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}`},
     ...options,
   });
   return instance;
