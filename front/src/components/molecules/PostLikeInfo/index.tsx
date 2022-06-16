@@ -1,24 +1,36 @@
-import React from "react";
-import Figure, {ImgProps} from "@atoms/Figure";
+import React, {useState} from "react";
 import styled from "styled-components";
+import Text, {TextProps} from "@atoms/Text";
+import LikeButton, {LikeByMe} from "@atoms/LikeButton";
 
-
-
-const StyledCardArea = styled.div`
+const StyledLikeContainer = styled.div`
+  display:flex;
   width: 100%;
+  border-top: 1px solid #efefef;
 `
-interface PostTopBar extends ImgProps{
-  user_name:string
+export interface PostLikeInfoType extends LikeByMe,TextProps{
+  likeByMe:boolean
 }
 
-function PostLikeInfo({user_name, postImgUrl}:PostTopBar){
+function PostLikeInfo({likeByMe,...props}: PostLikeInfoType) {
+  const {content} = props
+  const toggle = (data:boolean)=>!data
+  const [postLike,setPostLike] = useState(likeByMe)
+  const togglePostLike = ()=>{
+    const likeState = toggle(postLike)
+    setPostLike(likeState)
+    if(likeState){
+      // 좋아요 delete
+    }else{
+      // 좋아요 post
+    }
+  }
   return (
-    <StyledCardArea>
-      <div>
-      <Figure alt="cat" src={postImgUrl}/>
-        <p>{user_name}</p>
-      </div>
-    </StyledCardArea>
+    <StyledLikeContainer>
+      <LikeButton likeByMe={postLike} onClick={togglePostLike} />
+      <Text content={`${content}개`}/>
+    </StyledLikeContainer>
   )
 }
+
 export default PostLikeInfo
