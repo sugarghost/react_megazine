@@ -17,6 +17,8 @@
     ├── components      # atomic design을 위한 atoms, molecules, organisms
     │   ├── atoms		# atoms 컴포넌트
     │   │   ├── Button
+    │   │   ├── NavButton
+    │   │   ├── LikeButton
     │   │   ├── Input
     │   │   ├── Image
     │   │   ├── Title
@@ -35,11 +37,12 @@
     │   │   ├── PostContent
     │   │   ├── PostTopBar
     │   │   ├── PostLikeInfo
+    │   │   ├── Navigation
     │   │   └── UserThumb
     │   └── organisms		# organisms 컴포넌트
     │   │   ├── LoginContainer
     │   │   ├── RegisterContainer
-    │   │   ├── Navigation
+    │   │   ├── Header
     │   │   ├── PostList
     │   │   └── PostWriteForm
 	└── templates

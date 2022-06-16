@@ -18,7 +18,7 @@ library.add(fas)
 const Container = styled.div`
   letter-spacing: -0.01em;
   font-weight: 400;
-  background: #c4c5ca;
+  background: #beb1e4;
   min-height: 100vh;
   padding: 50px 0;
 `;

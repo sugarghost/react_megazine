@@ -28,7 +28,8 @@ function PostTopBar({userName, src, alt}:PostTopBarType){
       <UserThumb alt={alt} src={src} userName={userName}/>
       <StyledPostInfo>
         <p>17시간 전</p>
-        <Button size="xsmall" bgColor={themeContext.colors.point_6} color={themeContext.colors.point_0}>수정</Button>
+        <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
+                color={themeContext.colors.point_0}>수정</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>
   )

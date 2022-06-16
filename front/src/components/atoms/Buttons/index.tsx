@@ -10,7 +10,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
   outline?: string;
   bgColor?: string;
   transparent?: boolean;
-  round?:boolean;
+  round?:string;
   [prop: string]: any;
 
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -21,19 +21,19 @@ const StyledButton = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: stretch;
-  border-radius:${(props: ButtonProps) => (props.round ? '0.25rem' : `0`)};
+  border-radius:${(props: ButtonProps) => (props.round ? props.round : `0`)};
   border: ${(props: ButtonProps) => (props.outline === 'none' ? 'none' : `1px solid ${props.outline}`)};
   background: ${(props: ButtonProps) => (props.transparent ? 'transparent' : `${props.bgColor}`)};
   color: ${(props: ButtonProps) => props.color};
   cursor: pointer;
   outline: none;
   ${(props: ButtonProps) => {
-    if (props.size === 'xsmall') {
-      return css`
+  if (props.size === 'xsmall') {
+    return css`
         padding:5px 7px;
         font-size:12px;
       `;
-    }
+  }
   if (props.size === 'small') {
     return css`
         padding:8px 10px;
@@ -63,6 +63,7 @@ function Button({
                   transparent = false,
                   size = 'normal',
                   type = 'button',
+                  round,
                   onClick,
                 }: ButtonProps) {
   const commonProps = {
@@ -72,7 +73,8 @@ function Button({
     outline,
     bgColor,
     transparent,
-    type
+    type,
+    round
   };
 
   return <StyledButton {...commonProps} onClick={onClick}>{children}</StyledButton>

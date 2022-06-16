@@ -18,7 +18,7 @@ const StyledUserInfo = styled.div`
 function UserThumb({userName, src, alt}:PostTopBarType){
   return (
       <StyledUserInfo>
-        <Figure alt={alt} src={src} round={100} width={30} height={30}/>
+        <Figure alt={alt} src={src} round={100} width="30px" height="30px"/>
         <p>{userName}</p>
       </StyledUserInfo>
   )
