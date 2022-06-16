@@ -61,7 +61,7 @@ function Input({
       <StyledInput type={type} name={name} id={id} padding={padding}
                    required={required} placeholder={placeholder}
                    maxLength={maxLength} minLength={minLength}
-                   onChange={onChange} ref={inputValue} {...register}/>
+                   ref={inputValue} {...register} onChange={onChange}/>
     </StyledLabel>
   )
 }

@@ -43,7 +43,8 @@
     ]
   },
   "user": {
-    "userId": "aest",
-    "password": "aest"
+    "userId": "a@a.com",
+    "password": "asd123!@",
+    "nickname": "아아"
   }
 }
