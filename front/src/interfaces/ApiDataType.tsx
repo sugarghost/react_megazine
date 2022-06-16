@@ -9,5 +9,6 @@ export interface PostListType {
   "view_count": number;
   "created_at": string;
   "modified_at": string;
+  "profile_image_url":string;
   "template": "right" | "left" | "center"
 }

@@ -50,7 +50,7 @@ function Button({
                   children,
                   flex = 'auto',
                   color = 'black',
-                  outline = 'black',
+                  outline = 'none',
                   bgColor = 'white',
                   transparent = false,
                   size = 'normal',

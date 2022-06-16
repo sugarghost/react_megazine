@@ -19,7 +19,8 @@ export const postListState = atom<PostListType[]>({
       "view_count": 15,
       "created_at": "date",
       "modified_at": "date",
-      "template": "center"
+      "template": "center",
+      "profile_image_url":"",
     },
   ],
 });

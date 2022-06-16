@@ -1,27 +1,28 @@
 import React from "react";
-// import {useQuery} from "react-query";
-// import {AxiosError} from "axios";
 import ListTemplate from "@templates/ListTemplate";
-// import {PostListType} from "../../interfaces/ApiDataType";
-// import usePostApi from "../../service/usePostApi";
+import {useRecoilState} from "recoil";
+import {useQuery} from "react-query";
+import Text from "@atoms/Text";
+import {postListState} from "../../recoil/postList";
+import usePostApi from "../../service/usePostApi";
 
 function List() {
- // const getPostList = usePostApi.get
-/*
-const GetPostQuery = ()=>{
-  const {status, data} = useQuery<PostListType[], AxiosError>(['postlist'], getPostList);
-  if (status === "loading") {
-    return `<span>Loading...</span>`;
+  const [postList, setPostList] = useRecoilState(postListState)
+  const {isLoading} = useQuery(
+    'postList', usePostApi.get, {
+      onSuccess: data => {
+        setPostList(data)
+      },
+      onError: e => {
+        console.log(e)
+      }
+    }
+  )
+  if (isLoading) {
+    return <Text content="로딩중!"/>
   }
-  if (status === "error") {
-    return `<span>Error: {error.message}</span>`;
-  }
-    return data
-  }
-  */
-
   return (
-    <ListTemplate />
+    <ListTemplate listData={postList}/>
   )
 }
 

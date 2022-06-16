@@ -16,6 +16,7 @@ const Container = styled.div`
   font-weight: 400;
   background: #f0ebfd;
   min-height: 100vh;
+  padding:50px 0;
 `;
 
 const queryClient = new QueryClient();
