@@ -16,7 +16,7 @@ const registUser = async (value: FieldValues) => {
 };
 
 const loginUser = async (value: FieldValues) => {
-  const res = await defaultInstance.get(`${resourceLogin}`,
+  const res = await defaultInstance.post(`${resourceLogin}`,
       {params: {userId: value.userId, password: value.password}});
   return res;
 };
