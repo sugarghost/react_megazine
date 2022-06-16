@@ -16,27 +16,11 @@ const colors = {
   point_5: '#cbddf6',
   point_6: '#f0ebfd',
 };
-const fontSize = {
-  title: 1.8,
-  title_m: 1.8,
-  text: 1.4,
-};
-
-const buttons = {
-  m: {
-    fontSize: 1.2,
-    padding: 8,
-  },
-};
 export type ColorsTypes = typeof colors;
-export type FontSizeTypes = typeof fontSize;
 export type BgColorTypes = typeof bgColor;
-export type ButtonsTypes = typeof buttons;
 const theme: DefaultTheme = {
   colors,
-  fontSize,
   bgColor,
-  buttons,
 };
 
 export default theme;

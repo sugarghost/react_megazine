@@ -7,6 +7,13 @@ const StyledLikeContainer = styled.div`
   display:flex;
   width: 100%;
   border-top: 1px solid #efefef;
+  align-items: center;
+  padding:10px 10px 0;
+  &>p{
+    font-size:13px;
+    margin-left:5px;
+  }
+ 
 `
 export interface PostLikeInfoType extends LikeByMe,TextProps{
   likeByMe:boolean
@@ -28,7 +35,7 @@ function PostLikeInfo({likeByMe,...props}: PostLikeInfoType) {
   return (
     <StyledLikeContainer>
       <LikeButton likeByMe={postLike} onClick={togglePostLike} />
-      <Text content={`${content}개`}/>
+      <Text content={`${content}  `}/>
     </StyledLikeContainer>
   )
 }
