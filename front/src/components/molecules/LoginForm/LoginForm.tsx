@@ -4,7 +4,9 @@ import styled from "styled-components";
 import Button from "@atoms/Buttons";
 import { FieldValues, useForm } from 'react-hook-form';
 import {useMutation} from "react-query";
+import {useSetRecoilState} from 'recoil'
 import { useNavigate } from 'react-router-dom';
+import userToken from '../../../recoil/userAtoms'
 import userApi from '../../../service/useUserApi';
 
 const StyledForm = styled.form`
@@ -21,8 +23,11 @@ function LoginForm(){
   const {register, handleSubmit} = useForm<RegistrationFormFields>();
 
 
+  const setUserToken = useSetRecoilState(userToken)
   const mutation = useMutation((addData: FieldValues) => userApi.callLoginUser(addData), {
-    onSuccess: () => {
+    onSuccess: (res: FieldValues) => {
+      localStorage.setItem("userToken",res.data.userToken)
+      setUserToken(true)
       navigate('/');
     },
   });
