@@ -4,7 +4,7 @@ import PostList from "@organisms/Post";
 import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledPostListContainer = styled.div`
-  max-width:400px;
+  max-width:600px;
   margin:0 auto;
 `
 function ListTemplate({listData}:{listData:PostListType[]}){

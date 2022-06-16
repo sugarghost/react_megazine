@@ -6,16 +6,16 @@ export interface ImgProps {
   round?: number;
   alt: string;
   src: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   fit?: boolean;
   [prop: string]: any;
 }
 
 const StyledFigure = styled.figure<ImgProps>`
   display: block;
-  width:${( props ) => props.width ? `${props.width}px`:'100%'};
-  height:${( props ) => props.height ? `${props.height}px`:'auto'};
+  width:${( props ) => props.width ? `${props.width}`:'100%'};
+  height:${( props ) => props.height ? `${props.height}`:'auto'};
   background:#efefef;
   border: ${( props ) => props.borderSize ? `${props.borderSize}px solid #efefef`:'none'};
   border-radius: ${( props ) => props.round ? `${props.round}em`:'none'};
