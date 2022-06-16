@@ -6,8 +6,8 @@ import { FieldValues, useForm } from 'react-hook-form';
 import {useMutation} from "react-query";
 import {useSetRecoilState} from 'recoil'
 import { useNavigate } from 'react-router-dom';
-import userToken from '../../../recoil/userAtoms'
-import userApi from '../../../service/useUserApi';
+import userToken from "@recoil/userAtoms"
+import userApi from "@service/useUserApi";
 
 const StyledForm = styled.form`
   margin:0 auto;

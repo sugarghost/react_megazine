@@ -5,7 +5,7 @@ import Button from "@atoms/Buttons";
 import { FieldValues, useForm } from 'react-hook-form';
 import {useMutation} from "react-query";
 import { useNavigate } from 'react-router-dom';
-import userApi from '../../../service/useUserApi';
+import userApi from "@service/useUserApi";
 
 const StyledForm = styled.form`
   margin:0 auto;
