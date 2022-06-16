@@ -1,14 +1,14 @@
 export interface PostListType {
   "nickname": string;
-  "post_id": number;
+  "id": number;
   "title": string;
   "content": string;
-  "image_url": string;
-  "like_by_me": boolean;
-  "like_count": number;
+  "imageUrl": string;
+  "likeByMe": boolean;
+  "likeCount": number;
   "view_count": number;
-  "created_at": string;
-  "modified_at": string;
-  "profile_image_url":string;
+  "createdAt": string;
+  "modifiedAt": string;
+  "profileImageUrl":string;
   "template": "right" | "left" | "center"
 }

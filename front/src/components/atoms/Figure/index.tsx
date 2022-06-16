@@ -13,7 +13,7 @@ export interface ImgProps {
 }
 
 const StyledFigure = styled.figure<ImgProps>`
-  display: inline-block;
+  display: block;
   width:${( props ) => props.width ? `${props.width}px`:'100%'};
   height:${( props ) => props.height ? `${props.height}px`:'auto'};
   background:#efefef;
@@ -21,6 +21,7 @@ const StyledFigure = styled.figure<ImgProps>`
   border-radius: ${( props ) => props.round ? `${props.round}em`:'none'};
   overflow:hidden;
   & > img{
+    display:block;
     width:100%;
     height:100%;
     object-fit: ${( props ) => props.fit ? 'cover':`contain`};

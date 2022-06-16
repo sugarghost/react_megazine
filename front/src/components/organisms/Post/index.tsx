@@ -8,29 +8,31 @@ import {PostListType} from "../../../interfaces/ApiDataType";
 
 const StyledPostUnit = styled.article`
   width: 100%;
-  background:#fff;
-  padding:5px 10px 10px;
+  background: #fff;
+  padding: 10px 0 10px;
   box-sizing: border-box;
-  margin:20px 0;
+  margin: 50px 0;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  border-radius: 10px;
 `
 
 function PostList({post}: { post: PostListType }) {
   const {
-    post_id:postId,
+    id,
     content,
-    like_count:likeCount,
-    like_by_me:likeByMe,
-    profile_image_url:profileImage,
-    image_url:imgUrl,
+    likeCount,
+    likeByMe,
+    imageUrl,
     nickname,
     title,
-    template
+    template,
   }= post
-
+  const profileImageUrl ="https://ichef.bbci.co.uk/ne" +
+    "ws/976/cpsprodpb/41CF/production/_109474861_angrycat-index-getty3-3.jpg"
   return (
-    <StyledPostUnit key={postId}>
-      <PostTopBar userName={nickname} alt={nickname} src={profileImage}/>
-      <PostContent content={content} src={imgUrl} alt={title} template={template}/>
+    <StyledPostUnit key={id}>
+      <PostTopBar userName={nickname} alt={nickname} src={profileImageUrl}/>
+      <PostContent content={content} src={imageUrl} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}
       />

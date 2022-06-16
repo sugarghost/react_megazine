@@ -23,7 +23,8 @@ const StyledCardArea = styled.div<TemplateType>`
     }
     if(props.template==='right'){
       return css`
-        justify-content: right;
+        justify-content: left;
+        flex-direction: row-reverse;
         &>*{
           width:50%
         }
@@ -32,13 +33,24 @@ const StyledCardArea = styled.div<TemplateType>`
   }}
   width: 100%;
 `
+const StyledTextArea = styled.div`
+  padding:10px;
+`
+const StyledFigureArea = styled.div`
+  padding:0 0 0px;
+`
+
 
 
 function PostContent({content, alt, src,template}:PostContentTYpe){
   return (
     <StyledCardArea template={template}>
+      <StyledFigureArea>
       <Figure alt={alt} src={src}/>
+      </StyledFigureArea>
+      <StyledTextArea>
       <Text content={content}/>
+      </StyledTextArea>
     </StyledCardArea>
   )
 }
