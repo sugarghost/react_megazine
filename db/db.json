@@ -80,10 +80,11 @@
     }
     ],
   "user": {
-    "name": "이름",
-    "nickname": "닉네임",
-    "email": "test@email.com",
-    "introduce": "자기소개",
-    "createdAt": "Data"
+    "userId": "a@a.com",
+    "password": "asd123!@",
+    "nickname": "아아"
+  },
+  "login": {
+    "userToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ5b29ueSIsIm5pY2tuYW1lIjoieW9vbnkifQ.RSh9enzIBECyrdgY2NUVUZdbIOUvSALcrBCi3RxNA2g"
   }
 }

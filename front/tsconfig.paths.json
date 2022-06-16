@@ -9,7 +9,8 @@
       "@templates/*": ["./templates/*"],
       "@pages/*": ["./pages/*"],
       "@hooks/*": ["./hooks/*"],
-      "@service/*": ["./service/*"]
+      "@service/*": ["./service/*"],
+      "@recoil/*": ["./recoil/*"]
     }
   }
 }

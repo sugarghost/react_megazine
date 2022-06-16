@@ -52,6 +52,7 @@ function Input({
                  id, name, borderSize, round,placeholder,
                  type = "text", padding = "normal", children,
                  required=false,onChange,maxLength=524288, minLength=0,inputValue,
+                 register
                }: ComponentProps) {
 
   return (
@@ -60,7 +61,7 @@ function Input({
       <StyledInput type={type} name={name} id={id} padding={padding}
                    required={required} placeholder={placeholder}
                    maxLength={maxLength} minLength={minLength}
-                   onChange={onChange} ref={inputValue}/>
+                   ref={inputValue} {...register} onChange={onChange}/>
     </StyledLabel>
   )
 }
