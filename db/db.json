@@ -1,9 +1,8 @@
 {
-  "posts": {
-    "post_list": [
+  "posts": [
       {
         "nickname": "name",
-        "post_id": 0,
+        "id": 0,
         "title": "title",
         "content": "content",
         "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
@@ -12,11 +11,12 @@
         "view_count": 15,
         "created_at": "date",
         "modified_at": "date",
-        "template": "center"
+        "template": "center",
+        "profile_image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uWL_eRfWILPBikX0uAJt2Z2Y3icM8swj9h9tQqwpUuXsZtPb5QoHGOq-SiOGNYhb09g&usqp=CAU"
       },
       {
         "nickname": "name",
-        "post_id": 1,
+        "id": 1,
         "title": "title",
         "content": "content",
         "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
@@ -25,11 +25,12 @@
         "view_count": 15,
         "created_at": "date",
         "modified_at": "date",
-        "template": "center"
+        "template": "center",
+        "profile_image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uWL_eRfWILPBikX0uAJt2Z2Y3icM8swj9h9tQqwpUuXsZtPb5QoHGOq-SiOGNYhb09g&usqp=CAU"
       },
       {
         "nickname": "name",
-        "post_id": 2,
+        "id": 2,
         "title": "title",
         "content": "content",
         "image_url": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
@@ -38,10 +39,10 @@
         "view_count": 15,
         "created_at": "date",
         "modified_at": "date",
-        "template": "center"
+        "template": "center",
+        "profile_image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3uWL_eRfWILPBikX0uAJt2Z2Y3icM8swj9h9tQqwpUuXsZtPb5QoHGOq-SiOGNYhb09g&usqp=CAU"
       }
-    ]
-  },
+    ],
   "user": {
     "name": "이름",
     "nickname": "닉네임",

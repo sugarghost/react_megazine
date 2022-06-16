@@ -1,35 +1,32 @@
 import React from "react";
-import Figure, {ImgProps} from "@atoms/Figure";
 import styled from "styled-components";
 import Button from "@atoms/Buttons";
+import UserThumb,{PostTopBarType} from "@molecules/userThumb";
 
 const StyledCardTopBarArea = styled.div`
   width: 100%;
   display:flex;
   justify-content: space-between;
 `
-const StyledUserInfo = styled.div`
-  text-align:left;
-`
 const StyledPostInfo = styled.div`
-  text-align:right;
+  justify-content: right;
+  display:flex;
+  align-items: center;
+  &>button{
+    margin-left:10px;
+  }
 `
-interface PostTopBar extends ImgProps{
-  user_name:string
-}
-
-function PostContent({user_name, src, alt}:PostTopBar){
+function PostTopBar({userName, src, alt}:PostTopBarType){
   return (
     <StyledCardTopBarArea>
-      <StyledUserInfo>
-        <Figure alt={alt} src={src}/>
-        <p>{user_name}</p>
-      </StyledUserInfo>
+
+      <UserThumb alt={alt} src={src} userName={userName}/>
       <StyledPostInfo>
-        <Button size="small" bgColor="#000" color="#fff">수정</Button>
         <p>17시간 전</p>
+
+        <Button size="small" bgColor="#000" color="#fff">수정</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>
   )
 }
-export default PostContent
+export default PostTopBar

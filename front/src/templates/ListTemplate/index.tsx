@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import PostList from "@organisms/PostList";
+import {PostListType} from "../../interfaces/ApiDataType";
 
-const StyledPostListContainer = styled.article`
- max-width:600px;
+const StyledPostListContainer = styled.div`
+  max-width:500px;
   margin:0 auto;
 `
-function ListTemplate(){
+function ListTemplate({listData}:{listData:PostListType[]}){
   return(
     <StyledPostListContainer>
-    <PostList/>
+      {
+        listData.map((data)=><PostList key={data.post_id} post={data}/>)
+      }
     </StyledPostListContainer>
   )
 }

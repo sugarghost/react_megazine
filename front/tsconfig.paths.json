@@ -8,7 +8,8 @@
       "@organisms/*": ["./components/organisms/*"],
       "@templates/*": ["./templates/*"],
       "@pages/*": ["./pages/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@service/*": ["./service/*"]
     }
   }
 }
