@@ -1,8 +1,8 @@
 import React from "react";
-import RegisteContainer from "@organisms/RegisteContainer";
+import RegisteContainer from "@organisms/RegisterContainer";
 
 function Register(){
-  const isLogin = !!localStorage.getItem("userToken");
+  const isLogin = !!sessionStorage.getItem("userToken");
   if (isLogin) {
     alert('이미 로그인이 되어있습니다.');
     window.history.back();

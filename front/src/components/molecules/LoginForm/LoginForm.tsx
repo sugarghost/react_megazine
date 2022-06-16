@@ -2,15 +2,17 @@ import React from "react";
 import Input from "@atoms/Input";
 import styled from "styled-components";
 import Button from "@atoms/Buttons";
-import { FieldValues, useForm } from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
 import {useSetRecoilState} from 'recoil'
-import { useNavigate } from 'react-router-dom';
-import userToken from '../../../recoil/userAtoms'
-import userApi from '../../../service/useUserApi';
+import {useNavigate} from 'react-router-dom';
+import userToken from "@recoil/userAtoms"
+import userApi from "@service/useUserApi";
 
 const StyledForm = styled.form`
   margin:0 auto;
+  display: flex;
+  flex-direction: column;
 `
 
 export type RegistrationFormFields = {
@@ -18,7 +20,7 @@ export type RegistrationFormFields = {
   password: string;
 };
 
-function LoginForm(){
+function LoginForm() {
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm<RegistrationFormFields>();
 
@@ -26,7 +28,7 @@ function LoginForm(){
   const setUserToken = useSetRecoilState(userToken)
   const mutation = useMutation((addData: FieldValues) => userApi.callLoginUser(addData), {
     onSuccess: (res: FieldValues) => {
-      localStorage.setItem("userToken",res.data.userToken)
+      sessionStorage.setItem("userToken", res.data.userToken)
       setUserToken(true)
       navigate('/');
     },
@@ -36,12 +38,13 @@ function LoginForm(){
   };
 
 
-  return(
+  return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-    <Input id="userId" register = {register('userId', {required:true})}>아이디</Input>
-    <Input id="password" register = {register('password', {required:true})}>패스워드</Input>
-    <Button type="submit" size="big">으앙</Button>
+        <Input id="userId" register={register('userId', {required: true})}>아이디<br/></Input>
+        <Input id="password" register={register('password', {required: true})}>패스워드<br/></Input>
+        <Button type="submit" size="big">로그인</Button>
     </StyledForm>
   )
 }
+
 export default LoginForm

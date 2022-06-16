@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, {useCallback, useState} from "react";
 import Input from "@atoms/Input";
 import styled from "styled-components";
 import Button from "@atoms/Buttons";
-import { FieldValues, useForm } from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
-import { useNavigate } from 'react-router-dom';
-import userApi from '../../../service/useUserApi';
+import {useNavigate} from 'react-router-dom';
+import userApi from "@service/useUserApi";
 
 const StyledForm = styled.form`
   margin:0 auto;
@@ -18,7 +18,7 @@ export type RegistrationFormFields = {
   passwordCheck: string;
 };
 
-function RegisteForm(){
+function RegisterForm() {
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm<RegistrationFormFields>();
 
@@ -52,7 +52,7 @@ function RegisteForm(){
   // 이메일
   const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const emailRegex =
-        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     const emailCurrent = e.target.value;
     setEmail(emailCurrent);
 
@@ -82,19 +82,19 @@ function RegisteForm(){
 
   // 비밀번호 확인
   const onChangePasswordConfirm = useCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const passwordConfirmCurrent = e.target.value;
-        setPasswordConfirm(passwordConfirmCurrent);
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const passwordConfirmCurrent = e.target.value;
+      setPasswordConfirm(passwordConfirmCurrent);
 
-        if (password === passwordConfirmCurrent) {
-          setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요');
-          setIsPasswordConfirm(true);
-        } else {
-          setPasswordConfirmMessage('비밀번호가 틀려요. 다시 확인해주세요');
-          setIsPasswordConfirm(false);
-        }
-      },
-      [password]
+      if (password === passwordConfirmCurrent) {
+        setPasswordConfirmMessage('비밀번호를 똑같이 입력했어요');
+        setIsPasswordConfirm(true);
+      } else {
+        setPasswordConfirmMessage('비밀번호가 틀려요. 다시 확인해주세요');
+        setIsPasswordConfirm(false);
+      }
+    },
+    [password]
   );
 
 
@@ -104,30 +104,30 @@ function RegisteForm(){
     },
   });
   const onSubmit = (data: FieldValues) => {
-   if (isName && isEmail && isPassword && isPasswordConfirm)
-     mutation.mutate(data)
-  else
-    alert('입력값을 확인해 주세요');
+    if (isName && isEmail && isPassword && isPasswordConfirm)
+      mutation.mutate(data)
+    else
+      alert('입력값을 확인해 주세요');
   };
-  return(
+  return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Input id="userId" onChange={onChangeEmail}
-             register = {register('userId', {required:true})}>아이디</Input>
+             register={register('userId', {required: true})}>아이디</Input>
       <br/>
       <span>{emailMessage}</span>
       <br/>
       <Input id="nickname" onChange={onChangeName}
-             register = {register('nickname', {required:true})}>닉네임</Input>
+             register={register('nickname', {required: true})}>닉네임</Input>
       <br/>
       <span>{nameMessage}</span>
       <br/>
       <Input id="password" onChange={onChangePassword}
-             register = {register('password', {required:true})}>패스워드</Input>
+             register={register('password', {required: true})}>패스워드</Input>
       <br/>
       <span>{passwordMessage}</span>
       <br/>
       <Input id="passwordCheck" onChange={onChangePasswordConfirm}
-             register = {register('passwordCheck', {required:true})}>패스워드체크</Input>
+             register={register('passwordCheck', {required: true})}>패스워드체크</Input>
       <br/>
       <span>{passwordConfirmMessage}</span>
       <br/>
@@ -136,4 +136,5 @@ function RegisteForm(){
     </StyledForm>
   )
 }
-export default RegisteForm
+
+export default RegisterForm
