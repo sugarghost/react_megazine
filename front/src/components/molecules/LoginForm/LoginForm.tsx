@@ -26,7 +26,7 @@ function LoginForm(){
   const setUserToken = useSetRecoilState(userToken)
   const mutation = useMutation((addData: FieldValues) => userApi.callLoginUser(addData), {
     onSuccess: (res: FieldValues) => {
-      localStorage.setItem("userToken",res.data.userToken)
+      sessionStorage.setItem("userToken",res.data.userToken)
       setUserToken(true)
       navigate('/');
     },
