@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Input from "@atoms/Input";
-import styled from "styled-components";
+import styled, {ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
 import {FieldValues, useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
@@ -52,6 +52,8 @@ function LoginForm() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const themeContext = useContext(ThemeContext);
+
   const setUserToken = useSetRecoilState(userToken)
   const mutation = useMutation((addData: FieldValues) => userApi.callLoginUser(addData), {
     onSuccess: async (res: FieldValues) => {
@@ -79,21 +81,34 @@ function LoginForm() {
   const onSubmit = (data: FieldValues) => {
     mutation.mutate(data);
   };
+  const checkKeyDown = (e:any) => {
+    if (e.code === 'Enter') {
+      handleSubmit(onSubmit);
+    };
 
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Input id="email" type="email"
+             onKeyDown={checkKeyDown}
              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
              register={register('email', {required: true})}>아이디</Input>
       <Input id="password" type="password"
+             onKeyDown={checkKeyDown}
              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-             register={register('password', {required: true})}>패스워드</Input>
+             register={register('password', {
+               required: true,
+               minLength: {value: 8, message: "비밀번호는 8글자 이상입니다."},
+               maxLength: 25
+             })}>패스워드</Input>
 
       {email && password ? (
-        <Button type="submit" size="big">로그인</Button>
+        <Button type="submit" size="big" bgColor={themeContext.colors.point_3}
+                round="10px">로그인</Button>
       ) : (
-        <Button type="submit" size="big">로그인</Button>
+        <Button type="submit" size="big" bgColor="#ccc"
+                round="10px" disabled="disabled">로그인</Button>
       )}
     </StyledForm>
   )

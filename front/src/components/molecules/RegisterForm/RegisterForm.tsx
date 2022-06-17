@@ -1,6 +1,7 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import Input from "@atoms/Input";
-import styled from "styled-components";
+import Textarea from "@atoms/Textarea";
+import styled, {ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
 import {FieldValues, useForm} from 'react-hook-form';
 import {useMutation} from "react-query";
@@ -20,7 +21,8 @@ const StyledForm = styled.form`
     flex-direct: column;
   }
 
-  & > label > input {
+  & > label > input , 
+  & > label > textarea {
     margin-top: 5px;
     width: 100%;
     border-width: 1px;
@@ -31,8 +33,12 @@ const StyledForm = styled.form`
     border-radius: 2px;
     box-shadow: 1px 1px 5px rgba(66, 66, 66, .75);
   }
-
-  & > label > input:focus {
+  & > label > textarea{
+    
+    height: 100px;
+  }
+  & > label > input:focus , 
+  & > label > textarea{
     outline: none;
   }
 
@@ -54,12 +60,15 @@ export type RegistrationFormFields = {
   nickname: string;
   password: string;
   passwordCheck: string;
+  introduce: string;
 };
 
 function RegisterForm() {
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm<RegistrationFormFields>();
   const ReactSwal = withReactContent(Swal)
+
+  const themeContext = useContext(ThemeContext);
 
   const [, setName] = useState<string>('');
   const [, setNickname] = useState<string>('');
@@ -78,6 +87,7 @@ function RegisterForm() {
   const [isEmail, setIsEmail] = useState<boolean>(false);
   const [isPassword, setIsPassword] = useState<boolean>(false);
   const [isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(false);
+
 
   const onChangeName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -198,7 +208,15 @@ function RegisterForm() {
       <Input id="passwordCheck" type="password" onChange={onChangePasswordConfirm}
              register={register('passwordCheck', {required: true})}>패스워드체크</Input>
       <span className={isPasswordConfirm ? ('success'):('fail')}>{passwordConfirmMessage}</span>
-      <Button type="submit" size="big">회원가입</Button>
+      <Textarea id="introduce" register={register('introduce')}>자기소개</Textarea>
+
+      {isEmail && isName && isNickname && isPassword && isPasswordConfirm ? (
+        <Button type="submit" size="big" bgColor={themeContext.colors.point_3}
+                round="10px">회원가입</Button>
+      ) : (
+        <Button type="submit" size="big" bgColor="#ccc"
+                round="10px" disabled="disabled">회원가입</Button>
+      )}
     </StyledForm>
   )
 }
