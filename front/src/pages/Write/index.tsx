@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState} from "react";
 import Button from "@atoms/Buttons";
 import {Navigate, useNavigate} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
@@ -117,7 +117,6 @@ function Write() {
     alert('로그인이 필요한 페이지입니다.')
     return <Navigate to="/login" replace/>;
   }
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const mutation = useMutation((addData: FieldValues) =>postApi(addData), {
     onSuccess: () => {
@@ -135,6 +134,8 @@ function Write() {
     formData.append('template', data.template)
     mutation.mutate(formData)
   }
+
+
   return (
     <StyledFormContainer>
       <Title content="글 작성하기" importance="h2"/>

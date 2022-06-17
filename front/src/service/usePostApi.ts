@@ -17,4 +17,9 @@ export default {
     );
     return res
   },
+  async delete(payload:any) {
+    const res = await authInstance.delete(`${resource}/${payload}`
+    );
+    return res
+  },
 };

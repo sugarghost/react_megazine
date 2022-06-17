@@ -1,7 +1,9 @@
-import React,{useContext} from "react";
+import React, {useCallback, useContext} from "react";
 import styled,{ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
-import UserThumb,{PostTopBarType} from "@molecules/userThumb";
+import UserThumb,{UserThumbType} from "@molecules/userThumb";
+import {useMutation,useQueryClient} from "react-query";
+import usePostApi from "@service/usePostApi";
 
 const StyledCardTopBarArea = styled.div`
   width: 100%;
@@ -21,8 +23,23 @@ const StyledPostInfo = styled.div`
     font-size:12px;
   }
 `
-function PostTopBar({userName, src, alt}:PostTopBarType){
+interface PostTopBarType<T> extends UserThumbType{
+  postId :T
+}
+function PostTopBar<T>({userName, src, alt, postId}:PostTopBarType<T>){
   const themeContext = useContext(ThemeContext);
+  const queryClient = useQueryClient()
+  const deletePostApi = usePostApi.delete
+
+  const deleteMutation = useMutation((id:T) => deletePostApi(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('postList');
+    },
+  });
+  /* useCallback으로 안싸면 자기 혼자 실행되고 난리남 */
+  const deleteCallBack = useCallback(()=>{
+    deleteMutation.mutate(postId)
+  },[deleteMutation,postId])
   return (
     <StyledCardTopBarArea>
       <UserThumb alt={alt} src={src} userName={userName}/>
@@ -30,7 +47,8 @@ function PostTopBar({userName, src, alt}:PostTopBarType){
         <p>17시간 전</p>
         <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
                 color={themeContext.colors.point_0}>수정</Button>
-        <Button size="xsmall" bgColor={themeContext.colors.point_4} round="10px"
+        <Button size="xsmall" bgColor={themeContext.colors.point_4_1}
+                round="10px"  onClick={deleteCallBack}
                 color={themeContext.colors.point_0}>삭제</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>

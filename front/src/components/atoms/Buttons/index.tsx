@@ -1,33 +1,34 @@
-import React,{HTMLAttributes} from 'react';
+import React from 'react';
 import styled,{css} from "styled-components";
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement>{
+type GreetFunction = () => void;
+export interface ButtonProps extends StyledButtonProps{
   children?: React.ReactNode;
+  onClick?: GreetFunction;
+}
+export interface StyledButtonProps {
   flex?: number | 'auto';
   color?: string;
   size?: 'xsmall'|'small' | 'normal' | 'big';
-  type?: 'button' | 'submit';
   outline?: string;
   bgColor?: string;
   transparent?: boolean;
+  type?: 'button' | 'submit';
   round?:string;
   [prop: string]: any;
-
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
-
-const StyledButton = styled.button<ButtonProps>`
-  flex: ${(props: ButtonProps) => props.flex};
+const StyledButton = styled.button<StyledButtonProps>`
+  flex: ${(props) => props.flex};
   display: flex;
   justify-content: center;
   align-items: stretch;
-  border-radius:${(props: ButtonProps) => (props.round ? props.round : `0`)};
-  border: ${(props: ButtonProps) => (props.outline === 'none' ? 'none' : `1px solid ${props.outline}`)};
-  background: ${(props: ButtonProps) => (props.transparent ? 'transparent' : `${props.bgColor}`)};
-  color: ${(props: ButtonProps) => props.color};
+  border-radius:${(props) => (props.round ? props.round : `0`)};
+  border: ${(props) => (props.outline === 'none' ? 'none' : `1px solid ${props.outline}`)};
+  background: ${(props) => (props.transparent ? 'transparent' : `${props.bgColor}`)};
+  color: ${(props) => props.color};
   cursor: pointer;
   outline: none;
-  ${(props: ButtonProps) => {
+  ${(props) => {
   if (props.size === 'xsmall') {
     return css`
         padding:5px 7px;
@@ -74,10 +75,12 @@ function Button({
     bgColor,
     transparent,
     type,
-    round
+    round,
   };
 
-  return <StyledButton {...commonProps} onClick={onClick}>{children}</StyledButton>
+  const onClickEvent = onClick
+  return <StyledButton {...commonProps}
+                       onClick={onClickEvent}>{children}</StyledButton>
 }
 
 export default Button;
