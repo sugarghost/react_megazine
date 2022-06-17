@@ -33,6 +33,8 @@ function PostTopBar({userName, src, alt, createdAt}:PostTopBarType){
         <p>{timeForToday(createdAt)}</p>
         <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
                 color={themeContext.colors.point_0}>수정</Button>
+        <Button size="xsmall" bgColor={themeContext.colors.point_4} round="10px"
+                color={themeContext.colors.point_0}>삭제</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>
   )

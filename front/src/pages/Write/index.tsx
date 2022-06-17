@@ -121,7 +121,8 @@ function Write() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const mutation = useMutation((addData: FieldValues) =>postApi(addData), {
     onSuccess: () => {
-      queryClient.invalidateQueries('boader_list');
+      queryClient.invalidateQueries('postList');
+      navigate('/')
     },
   });
   const saveBtnClick = (data: FieldValues) => {
@@ -133,7 +134,6 @@ function Write() {
     formData.append('content', data.content)
     formData.append('template', data.template)
     mutation.mutate(formData)
-    navigate('/')
   }
   return (
     <StyledFormContainer>

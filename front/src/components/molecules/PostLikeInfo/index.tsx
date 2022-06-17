@@ -2,40 +2,48 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Text, {TextProps} from "@atoms/Text";
 import LikeButton, {LikeByMe} from "@atoms/LikeButton";
+import {useMutation, useQueryClient} from "react-query";
+import usePostApi from "@service/usePostApi";
 
 const StyledLikeContainer = styled.div`
-  display:flex;
+  display: flex;
   width: 100%;
   border-top: 1px solid #efefef;
   align-items: center;
-  padding:10px 10px 0;
-  &>p{
-    font-size:13px;
-    margin-left:5px;
+  padding: 10px 10px 0;
+
+  & > p {
+    font-size: 13px;
+    margin-left: 5px;
   }
- 
+
 `
-export interface PostLikeInfoType extends LikeByMe,TextProps{
-  likeByMe:boolean
+
+export interface PostLikeInfoType<V> extends LikeByMe, TextProps {
+  postId: V;
 }
 
-function PostLikeInfo({likeByMe,...props}: PostLikeInfoType) {
+function PostLikeInfo<V>({likeByMe, postId, ...props}: PostLikeInfoType<V>) {
   const {content} = props
-  const toggle = (data:boolean)=>!data
-  const [postLike,setPostLike] = useState(likeByMe)
-  const togglePostLike = ()=>{
+  const likePostApi = usePostApi.likePost
+  const toggle = (data: boolean) => !data
+  const queryClient = useQueryClient()
+  const [postLike, setPostLike] = useState(likeByMe)
+  const likeMutation = useMutation((id: V) => likePostApi(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('postList');
+    },
+  });
+  const togglePostLike = () => {
     const likeState = toggle(postLike)
     setPostLike(likeState)
-    if(likeState){
-      // 좋아요 delete
-    }else{
-      // 좋아요 post
-    }
+    likeMutation.mutate(postId)
+
   }
   return (
     <StyledLikeContainer>
-      <LikeButton likeByMe={postLike} onClick={togglePostLike} />
-      <Text content={`${content}  `}/>
+      <LikeButton likeByMe={postLike} onClick={togglePostLike}/>
+      <Text content={`${content}`}/>
     </StyledLikeContainer>
   )
 }
