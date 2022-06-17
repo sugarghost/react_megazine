@@ -12,4 +12,9 @@ export default {
     );
     return res
   },
+  async likePost(payload:any) {
+    const res = await authInstance.post(`${resource}/${payload}/like`
+    );
+    return res
+  },
 };
