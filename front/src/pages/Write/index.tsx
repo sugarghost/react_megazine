@@ -13,17 +13,26 @@ const StyledInputArea = styled.div`
   margin-bottom: 20px;
 `
 const StyledFormContainer = styled.div`
+  h2 {
+    text-align: center;
+    margin-top: 70px;
+  }
+`
+const StyledFormBody = styled.div`
   max-width: 600px;
   margin: 40px auto;
   width: 100%;
   padding: 25px;
   background: #fff;
   border-radius: 20px;
-  input[type=radio]{
+
+
+  input[type=radio] {
     visibility: hidden;
-    width:0;
-    height:0;
+    width: 0;
+    height: 0;
   }
+
   label, input, p {
     font-size: 14px;
   }
@@ -43,10 +52,16 @@ const StyledFormContainer = styled.div`
 const StyledTemplateArea = styled.div`
   display: flex;
   justify-content: center;
-  label{
-    width:100px;
-    margin-bottom:20px;
+
+  label {
+    width: 100px;
+    cursor:pointer;
+    margin-bottom: 20px;
     justify-content: center;
+  }
+  input:checked + label{
+    font-weight:bold;
+    color:${({ theme }) => theme.colors.point_2};;
   }
 `
 const TextAreaBox = styled.div`
@@ -55,7 +70,7 @@ const TextAreaBox = styled.div`
   label {
     width: 100px;
     justify-content: center;
-    padding-right:20px;
+    padding-right: 20px;
   }
 
   textarea {
@@ -64,19 +79,21 @@ const TextAreaBox = styled.div`
     padding: 20px;
     font-size: 14px;
     margin: 10px 0 30px;
-    width:calc(100% - 100px);
+    width: calc(100% - 100px);
   }
 `
 const StyledTitleBox = styled.div`
   display: flex;
   margin-bottom: 15px;
+
   label {
     width: 100px;
     justify-content: center;
-    padding-right:20px;
+    padding-right: 20px;
   }
-  input{
-    width:calc(100% - 100px)
+
+  input {
+    width: calc(100% - 100px)
   }
 `
 export type WriteFormFileds = {
@@ -110,18 +127,21 @@ function Write() {
     navigate('/')
   }
   return (
-    <>
+    <StyledFormContainer>
       <Title content="글 작성하기" importance="h2"/>
-      <StyledFormContainer>
+      <StyledFormBody>
         <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
           <StyledInputArea>
             <StyledTemplateArea>
-              <label htmlFor="center">Center</label>
+
               <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
-              <label htmlFor="left">Left</label>
+              <label htmlFor="center">Center</label>
+
               <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
-              <label htmlFor="right">Right</label>
+              <label htmlFor="left">Left</label>
+
               <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
+              <label htmlFor="right">Right</label>
             </StyledTemplateArea>
             <StyledTitleBox>
               <Input id="title" register={register('title', {required: true})}>제목</Input>
@@ -136,8 +156,8 @@ function Write() {
             작성하기
           </Button>
         </form>
-      </StyledFormContainer>
-    </>
+      </StyledFormBody>
+    </StyledFormContainer>
   )
 }
 
