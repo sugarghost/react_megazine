@@ -1,7 +1,11 @@
 
 import { atom } from 'recoil';
+import { recoilPersist } from "recoil-persist";
+// recoil-persist
+const { persistAtom } = recoilPersist();
 
-export default atom<boolean>({
-    key: 'isLogin',
-    default: false,
+export default atom<string>({
+    key: 'userToken',
+    default: '',
+    effects_UNSTABLE: [persistAtom],
 });
