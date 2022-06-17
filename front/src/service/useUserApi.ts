@@ -1,23 +1,23 @@
 import { FieldValues } from 'react-hook-form';
 import { defaultInstance } from './httpClient';
 
-const resourceUser = '/user';
-const resourceLogin = '/login';
+const resource = 'api/';
 
 
 const registUser = async (value: FieldValues) => {
-  const addDatas = {
-    userId: value.userId,
+  const postDatas = {
+    email: value.email,
     password: value.password,
     nickname: value.nickname,
+    name: value.nickname,
   };
-  const res = await defaultInstance.post(`${resourceUser}`, addDatas);
+  const res = await defaultInstance.post(`${resource}register`, postDatas);
   return res;
 };
 
 const loginUser = async (value: FieldValues) => {
-  const res = await defaultInstance.post(`${resourceLogin}`,
-      {params: {userId: value.userId, password: value.password}});
+  const res = await defaultInstance.post(`${resource}login`,
+      {email: value.email, password: value.password});
   return res;
 };
 
