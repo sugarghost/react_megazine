@@ -18,7 +18,7 @@ library.add(fas)
 const Container = styled.div`
   letter-spacing: -0.01em;
   font-weight: 400;
-  background: #beb1e4;
+  background: #dcd9e6;
   min-height: 100vh;
   padding: 50px 0;
 `;
@@ -43,6 +43,5 @@ function App() {
       </RecoilRoot>
     </QueryClientProvider>
   )
-    ;
 }
 export default App;

@@ -1,2 +1,5 @@
+
 // eslint-disable-next-line import/prefer-default-export
-export const useLoginState = !!sessionStorage.getItem("userToken");
+export const useGetuserToken = ()=>
+  !!sessionStorage.getItem("userToken")
+

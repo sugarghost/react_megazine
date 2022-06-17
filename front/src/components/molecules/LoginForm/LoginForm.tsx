@@ -22,7 +22,6 @@ function LoginForm(){
   const navigate = useNavigate();
   const {register, handleSubmit} = useForm<RegistrationFormFields>();
 
-
   const setUserToken = useSetRecoilState(userToken)
   const mutation = useMutation((addData: FieldValues) => userApi.callLoginUser(addData), {
     onSuccess: (res: FieldValues) => {

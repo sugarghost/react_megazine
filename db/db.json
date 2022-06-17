@@ -1,44 +1,44 @@
 {
   "posts": [
-      {
-        "nickname": "name",
-        "id": 0,
-        "title": "title",
-        "content": "왜 이런 말을 했는지 모르지만, 확실히 고양이는 21세기의 가장 이상적인 반려동물이다. 독립적인 성격에 귀여운 외모까지. 털 뿜뿜과 알러지만 빼면 키우지 말아야 할 이유가 있을까. 1인 가구가 증가하면서 반려 고양이를 들이는 사람이 늘어나고 있다. 이대로라면 강아지 수를 따라잡을지도 모른다.\n\n \n\n나는 만 3년째 반려 고양이와 함께하고 있는데, 우리가 흔히 갖는 편견이 깨지는 경험을 종종 한다. 이들도 외로움을 느끼고 강한 애정을 표현하며, 아주 살짝이긴 하지만 쟤(나)가 주인이라는 의식도 있다. 따지고 보면 대개 우리는 자발적으로 집사를 자처하고 고양이를 이해하려는 시도를 안 했던 게 아닐까. 고양이는 개와 다르다. 그리고 사람과도 다르다.",
-        "imageUrl": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
-        "likeByMe": true,
-        "likeCount": 10,
-        "viewCount": 15,
-        "createdAt": "date",
-        "modifiedAt": "date",
-        "template": "center"
-      },
-      {
-        "nickname": "name",
-        "id": 1,
-        "title": "title",
-        "content": "고양이는 생후 2주부터 약 6주라는 짧은 기간 동안 모든 사회생활의 토대가 만들어진다. 이 시기에 사람의 돌봄을 받는 ‘핸들링’이라는 과정을 거치지 않으면 평생 사람 옆에서 불안감을 느낄 가능성이 높다.\n\n \n\n고양이의 사회적 뇌는 생후 8주가 되면 급격하게 변하는데, 이후에 사회성을 기르기란 사실상 불가능하다고 한다. 생후 14주가 지나기까지 핸들링을 받지 못한 고양이는 사람과 친해지기 어려워 집고양이가 될 가능성이 거의 없다. 하지만 8주가 지났다고 해서 모든 고양이의 배움이 완전히 사라지는 것은 아니다. 생후 1년까지 고양이는 사람 및 다른 고양이와의 소통 방법을 계속해서 배운다.",
-        "imageUrl": "https://catadoptionteam.org/wp-content/uploads/2021/07/Homepage-MiddleBox-768x512.jpg",
-        "likeByMe": true,
-        "likeCount": 10,
-        "viewCount": 15,
-        "createdAt": "date",
-        "modifiedAt": "date",
-        "template": "left"
-      },
-      {
-        "nickname": "name",
-        "id": 2,
-        "title": "title",
-        "content": "고양이는 파란색과 노란색만 식별할 수 있다. 실은 이 두 가지 색도 정확히 구분하지 못하기 때문에 색은 고양이에게 큰 의미가 없다. 빨간색과 녹색은 회색으로 보이고, 밝기, 모양, 무늬로 색을 구별한다. 고양이의 눈에는 수정체 모양을 바꾸어주는 근육이 없어서 30cm보다 가까운 곳에 있는 물체에 초점을 맞추는 것은 사실상 불가능하다. 가까운 곳에 있는 물체는 수염을 내밀어 감지한다고.",
-        "imageUrl": "https://cdn.shopify.com/s/files/1/1832/0821/files/catshark.jpg?v=1649869148",
-        "likeByMe": true,
-        "likeCount": 10,
-        "viewCount": 15,
-        "createdAt": "date",
-        "modifiedAt": "date",
-        "template": "right"
-      },
+    {
+      "nickname": "name",
+      "id": 0,
+      "title": "title",
+      "content": "왜 이런 말을 했는지 모르지만, 확실히 고양이는 21세기의 가장 이상적인 반려동물이다. 독립적인 성격에 귀여운 외모까지. 털 뿜뿜과 알러지만 빼면 키우지 말아야 할 이유가 있을까. 1인 가구가 증가하면서 반려 고양이를 들이는 사람이 늘어나고 있다. 이대로라면 강아지 수를 따라잡을지도 모른다.\n\n \n\n나는 만 3년째 반려 고양이와 함께하고 있는데, 우리가 흔히 갖는 편견이 깨지는 경험을 종종 한다. 이들도 외로움을 느끼고 강한 애정을 표현하며, 아주 살짝이긴 하지만 쟤(나)가 주인이라는 의식도 있다. 따지고 보면 대개 우리는 자발적으로 집사를 자처하고 고양이를 이해하려는 시도를 안 했던 게 아닐까. 고양이는 개와 다르다. 그리고 사람과도 다르다.",
+      "imageUrl": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",
+      "likeByMe": true,
+      "likeCount": 10,
+      "viewCount": 15,
+      "createdAt": "date",
+      "modifiedAt": "date",
+      "template": "center"
+    },
+    {
+      "nickname": "name",
+      "id": 1,
+      "title": "title",
+      "content": "고양이는 생후 2주부터 약 6주라는 짧은 기간 동안 모든 사회생활의 토대가 만들어진다. 이 시기에 사람의 돌봄을 받는 ‘핸들링’이라는 과정을 거치지 않으면 평생 사람 옆에서 불안감을 느낄 가능성이 높다.\n\n \n\n고양이의 사회적 뇌는 생후 8주가 되면 급격하게 변하는데, 이후에 사회성을 기르기란 사실상 불가능하다고 한다. 생후 14주가 지나기까지 핸들링을 받지 못한 고양이는 사람과 친해지기 어려워 집고양이가 될 가능성이 거의 없다. 하지만 8주가 지났다고 해서 모든 고양이의 배움이 완전히 사라지는 것은 아니다. 생후 1년까지 고양이는 사람 및 다른 고양이와의 소통 방법을 계속해서 배운다.",
+      "imageUrl": "https://catadoptionteam.org/wp-content/uploads/2021/07/Homepage-MiddleBox-768x512.jpg",
+      "likeByMe": true,
+      "likeCount": 10,
+      "viewCount": 15,
+      "createdAt": "date",
+      "modifiedAt": "date",
+      "template": "left"
+    },
+    {
+      "nickname": "name",
+      "id": 2,
+      "title": "title",
+      "content": "고양이는 파란색과 노란색만 식별할 수 있다. 실은 이 두 가지 색도 정확히 구분하지 못하기 때문에 색은 고양이에게 큰 의미가 없다. 빨간색과 녹색은 회색으로 보이고, 밝기, 모양, 무늬로 색을 구별한다. 고양이의 눈에는 수정체 모양을 바꾸어주는 근육이 없어서 30cm보다 가까운 곳에 있는 물체에 초점을 맞추는 것은 사실상 불가능하다. 가까운 곳에 있는 물체는 수염을 내밀어 감지한다고.",
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1832/0821/files/catshark.jpg?v=1649869148",
+      "likeByMe": true,
+      "likeCount": 10,
+      "viewCount": 15,
+      "createdAt": "date",
+      "modifiedAt": "date",
+      "template": "right"
+    },
     {
       "nickname": "name",
       "id": 3,
@@ -77,8 +77,17 @@
       "createdAt": "date",
       "modifiedAt": "date",
       "template": "right"
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
     }
-    ],
+  ],
   "user": {
     "userId": "a@a.com",
     "password": "asd123!@",

@@ -14,8 +14,6 @@ export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   [prop: string]: any;
 }
 
-
-
 export interface ComponentProps extends InputProps {
   borderSize?: number;
   round?: number;
@@ -47,14 +45,12 @@ const StyledLabel = styled.label<InputProps>`
   border: ${(props) => props.borderSize ? `${props.borderSize}px solid #ccc` : 'none'};
   border-radius: ${(props) => props.round ? `${props.round}em` : 'none'};
 `
-
 function Input({
                  id, name, borderSize, round,placeholder,
                  type = "text", padding = "normal", children,
                  required=false,onChange,maxLength=524288, minLength=0,inputValue,
                  register
                }: ComponentProps) {
-
   return (
     <StyledLabel borderSize={borderSize} round={round}>
       {children}
