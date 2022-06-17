@@ -16,7 +16,7 @@ const StyledPostUnit = styled.article`
   border-radius: 10px;
 `
 
-function PostList({post}: { post: PostListType }) {
+function Post({post}: { post: PostListType }) {
   const {
     id,
     content,
@@ -29,10 +29,11 @@ function PostList({post}: { post: PostListType }) {
   }= post
   const profileImageUrl ="https://ichef.bbci.co.uk/ne" +
     "ws/976/cpsprodpb/41CF/production/_109474861_angrycat-index-getty3-3.jpg"
+
   return (
     <StyledPostUnit key={id}>
       <PostTopBar userName={nickname} alt={nickname} src={profileImageUrl}/>
-      <PostContent content={content} src={imageUrl} alt={title} template={template}/>
+      <PostContent content={content} src={`http://${imageUrl}`} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}
       />
@@ -41,4 +42,4 @@ function PostList({post}: { post: PostListType }) {
 }
 
 
-export default PostList
+export default Post

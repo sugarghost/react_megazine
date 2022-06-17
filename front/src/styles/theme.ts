@@ -15,6 +15,9 @@ const colors = {
   point_4: '#bbb0ff',
   point_5: '#cbddf6',
   point_6: '#f0ebfd',
+  gray_0: '#e3e3e3',
+  gray_1: '#8d898e',
+  gray_2: '#555',
 };
 export type ColorsTypes = typeof colors;
 export type BgColorTypes = typeof bgColor;

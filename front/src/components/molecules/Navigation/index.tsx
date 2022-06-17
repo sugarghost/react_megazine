@@ -12,13 +12,13 @@ const NavContainer = styled.div`
   justify-content: center;
   a:nth-child(2) {
     font-size:22px;
+    margin-bottom:2px;
   }
 `
 
 function Navi() {
   return (
     <NavContainer>
-
       <NavButton linkUrl="/write">
         <FontAwesomeIcon icon="pen"/>
       </NavButton>

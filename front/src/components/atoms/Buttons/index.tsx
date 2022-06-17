@@ -48,7 +48,7 @@ const StyledButton = styled.button<ButtonProps>`
   if (props.size === 'big') {
     return css`
         width: 100%;
-        padding: 14px 20px;
+        padding: 18px 20px;
       `;
   }
 }}
