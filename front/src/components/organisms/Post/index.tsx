@@ -36,6 +36,8 @@ function Post({post}: { post: PostListType }) {
       <PostContent content={content} src={`http://${imageUrl}`} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}
+                    postId={id}
+
       />
     </StyledPostUnit>
   )

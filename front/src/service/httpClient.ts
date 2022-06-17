@@ -43,6 +43,7 @@ const axiosApi = (url: string, options?: object) => {
 
 const axiosAuthApi = (url: string, options?: object) => {
   const token = getToken('userToken')
+  console.log(token)
   const instance = axios.create({
     baseURL: `${url}/api`,
     headers: {'X-AUTH-TOKEN': `${token}`},
