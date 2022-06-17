@@ -1,9 +1,6 @@
 import { FieldValues } from 'react-hook-form';
 import { defaultInstance } from './httpClient';
 
-const resource = 'api/';
-
-
 const registUser = async (value: FieldValues) => {
   const postDatas = {
     email: value.email,
@@ -11,12 +8,12 @@ const registUser = async (value: FieldValues) => {
     nickname: value.nickname,
     name: value.nickname,
   };
-  const res = await defaultInstance.post(`${resource}register`, postDatas);
+  const res = await defaultInstance.post(`/register`, postDatas);
   return res;
 };
 
 const loginUser = async (value: FieldValues) => {
-  const res = await defaultInstance.post(`${resource}login`,
+  const res = await defaultInstance.post(`/login`,
       {email: value.email, password: value.password});
   return res;
 };

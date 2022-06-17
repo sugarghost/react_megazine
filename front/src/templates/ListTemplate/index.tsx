@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PostList from "@organisms/Post";
+import Post from "@organisms/Post";
 import Header from "@organisms/Header";
 import {PostListType} from "../../interfaces/ApiDataType";
 
@@ -13,7 +13,7 @@ function ListTemplate({listData}:{listData:PostListType[]}){
     <StyledPostListContainer>
       <Header/>
       {
-        listData.map((data)=><PostList key={data.id} post={data}/>)
+        listData.map((data)=><Post key={data.id} post={data}/>)
       }
     </StyledPostListContainer>
   )

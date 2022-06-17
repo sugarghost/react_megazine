@@ -44,7 +44,7 @@
     │   │   ├── RegisterContainer
     │   │   ├── Header
     │   │   ├── PostList
-    │   │   └── PostWriteForm
+    │   │   └── WriteForm
 	└── templates
     │   ├── LoginTemplate
     │   ├── RegisterTemplate
