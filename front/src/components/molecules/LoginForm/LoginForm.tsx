@@ -22,7 +22,7 @@ const StyledForm = styled.form`
     flex-direct: column;
   }
 
-  & > label > input {
+  & > input {
     margin-top: 5px;
     width: 100%;
     border-width: 1px;
@@ -34,7 +34,7 @@ const StyledForm = styled.form`
     box-shadow: 1px 1px 5px rgba(66, 66, 66, .75);
   }
 
-  & > label > input:focus {
+  & > input:focus {
     outline: none;
   }
 `

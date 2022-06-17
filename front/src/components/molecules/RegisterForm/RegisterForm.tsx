@@ -21,7 +21,7 @@ const StyledForm = styled.form`
     flex-direct: column;
   }
 
-  & > label > input , 
+  & > input , 
   & > label > textarea {
     margin-top: 5px;
     width: 100%;
@@ -37,7 +37,7 @@ const StyledForm = styled.form`
     
     height: 100px;
   }
-  & > label > input:focus , 
+  & > input:focus , 
   & > label > textarea{
     outline: none;
   }

@@ -2,6 +2,7 @@ import React,{useContext} from "react";
 import styled,{ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
 import UserThumb,{PostTopBarType} from "@molecules/userThumb";
+import timeForToday from "@utils/Time/time"
 
 const StyledCardTopBarArea = styled.div`
   width: 100%;
@@ -21,13 +22,15 @@ const StyledPostInfo = styled.div`
     font-size:12px;
   }
 `
-function PostTopBar({userName, src, alt}:PostTopBarType){
+function PostTopBar({userName, src, alt, createdAt}:PostTopBarType){
   const themeContext = useContext(ThemeContext);
+
+
   return (
     <StyledCardTopBarArea>
       <UserThumb alt={alt} src={src} userName={userName}/>
       <StyledPostInfo>
-        <p>17시간 전</p>
+        <p>{timeForToday(createdAt)}</p>
         <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
                 color={themeContext.colors.point_0}>수정</Button>
         <Button size="xsmall" bgColor={themeContext.colors.point_4} round="10px"
