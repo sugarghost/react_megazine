@@ -52,13 +52,15 @@ function Input({
                  register
                }: ComponentProps) {
   return (
-    <StyledLabel borderSize={borderSize} round={round}>
+    <>
+    <StyledLabel htmlfor={name} borderSize={borderSize} round={round}>
       {children}
+    </StyledLabel>
       <StyledInput type={type} name={name} id={id} padding={padding}
                    required={required} placeholder={placeholder}
                    maxLength={maxLength} minLength={minLength}
                    ref={inputValue} {...register} onChange={onChange}/>
-    </StyledLabel>
+    </>
   )
 }
 
