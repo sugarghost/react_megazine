@@ -1,6 +1,5 @@
 import React, {useContext, useState} from "react";
 import Button from "@atoms/Buttons";
-import {useGetuserToken} from "@hooks/useLoginHooks";
 import {Navigate, useNavigate} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
 import {FieldValues, useForm} from "react-hook-form";
@@ -8,6 +7,9 @@ import Input from "@atoms/Input";
 import usePostApi from "@service/usePostApi";
 import styled, {ThemeContext} from "styled-components";
 import Title from "@atoms/Title";
+import { useRecoilValue} from "recoil";
+import userToken from "@recoil/userAtoms";
+import {useMutation,useQueryClient} from "react-query";
 
 const StyledInputArea = styled.div`
   margin-bottom: 20px;
@@ -104,9 +106,10 @@ export type WriteFormFileds = {
 };
 
 function Write() {
+  const queryClient = useQueryClient();
   const {register, handleSubmit} = useForm<WriteFormFileds>();
   const [files, setFiles] = useState<File[]>([])
-  const token = useGetuserToken()
+  const token = useRecoilValue(userToken)
   const postApi = usePostApi.post
   const navigate = useNavigate()
   const themeContext = useContext(ThemeContext);
@@ -115,6 +118,12 @@ function Write() {
     return <Navigate to="/login" replace/>;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const mutation = useMutation((addData: FieldValues) =>postApi(addData), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('boader_list');
+    },
+  });
   const saveBtnClick = (data: FieldValues) => {
     const formData = new FormData();
     files.forEach((file) => {
@@ -123,7 +132,7 @@ function Write() {
     formData.append('title', data.title)
     formData.append('content', data.content)
     formData.append('template', data.template)
-    postApi(formData)
+    mutation.mutate(formData)
     navigate('/')
   }
   return (

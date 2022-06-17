@@ -1,18 +1,15 @@
-import { defaultInstance } from './httpClient';
+import {authInstance} from './httpClient';
 
 const resource = '/posts';
 
 export default {
   get() {
-    return defaultInstance.get(resource).then((res) => res.data);
+    return authInstance.get(resource).then((res) => res.data);
   },
-  post(payload: object) {
-    return defaultInstance.post(`${resource}`, payload);
-  },
-  update(payload: object, id: number) {
-    return defaultInstance.put(`${resource}/${id}`, payload);
-  },
-  delete(id: number) {
-    return defaultInstance.delete(`${resource}/${id}`);
+  async post(payload: object) {
+    const res = await authInstance.post(`${resource}`, payload,
+      {headers: {'Content-Type': 'multipart/form-data'}}
+    );
+    return res
   },
 };

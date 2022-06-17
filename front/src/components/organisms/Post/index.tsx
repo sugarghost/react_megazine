@@ -33,7 +33,7 @@ function Post({post}: { post: PostListType }) {
   return (
     <StyledPostUnit key={id}>
       <PostTopBar userName={nickname} alt={nickname} src={profileImageUrl}/>
-      <PostContent content={content} src={imageUrl} alt={title} template={template}/>
+      <PostContent content={content} src={`http://${imageUrl}`} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}
       />
