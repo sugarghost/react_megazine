@@ -65,6 +65,7 @@ function Button({
                   type = 'button',
                   round,
                   onClick,
+                  disabled,
                 }: ButtonProps) {
   const commonProps = {
     flex,
@@ -77,7 +78,7 @@ function Button({
     round
   };
 
-  return <StyledButton {...commonProps} onClick={onClick}>{children}</StyledButton>
+  return <StyledButton {...commonProps} onClick={onClick} disabled={disabled}>{children}</StyledButton>
 }
 
 export default Button;
