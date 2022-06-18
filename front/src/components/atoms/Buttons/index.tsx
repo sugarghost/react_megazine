@@ -66,6 +66,7 @@ function Button({
                   type = 'button',
                   round,
                   onClick,
+                  ...props
                 }: ButtonProps) {
   const commonProps = {
     flex,
@@ -79,7 +80,7 @@ function Button({
   };
 
   const onClickEvent = onClick
-  return <StyledButton {...commonProps}
+  return <StyledButton {...commonProps} {...props}
                        onClick={onClickEvent}>{children}</StyledButton>
 }
 

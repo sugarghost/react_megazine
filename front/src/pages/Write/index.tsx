@@ -1,4 +1,4 @@
-import React, { useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import Button from "@atoms/Buttons";
 import {Navigate, useNavigate} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
@@ -7,9 +7,9 @@ import Input from "@atoms/Input";
 import usePostApi from "@service/usePostApi";
 import styled, {ThemeContext} from "styled-components";
 import Title from "@atoms/Title";
-import { useRecoilValue} from "recoil";
+import {useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
-import {useMutation,useQueryClient} from "react-query";
+import {useMutation, useQueryClient} from "react-query";
 
 const StyledInputArea = styled.div`
   margin-bottom: 20px;
@@ -50,6 +50,9 @@ const StyledFormBody = styled.div`
     border: 1px solid #dcdcdc;
   }
 
+  button:disabled {
+    opacity: .6
+  }
 `
 const StyledTemplateArea = styled.div`
   display: flex;
@@ -57,13 +60,14 @@ const StyledTemplateArea = styled.div`
 
   label {
     width: 100px;
-    cursor:pointer;
+    cursor: pointer;
     margin-bottom: 20px;
     justify-content: center;
   }
-  input:checked + label{
-    font-weight:bold;
-    color:${({ theme }) => theme.colors.point_2};;
+
+  input:checked + label {
+    font-weight: bold;
+    color: ${({theme}) => theme.colors.point_2};;
   }
 `
 const TextAreaBox = styled.div`
@@ -107,7 +111,7 @@ export type WriteFormFileds = {
 
 function Write() {
   const queryClient = useQueryClient();
-  const {register, handleSubmit} = useForm<WriteFormFileds>();
+  const {register, handleSubmit, formState} = useForm<WriteFormFileds>({mode: 'onChange'});
   const [files, setFiles] = useState<File[]>([])
   const token = useRecoilValue(userToken)
   const postApi = usePostApi.post
@@ -118,20 +122,24 @@ function Write() {
     return <Navigate to="/login" replace/>;
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const mutation = useMutation((addData: FieldValues) =>postApi(addData), {
+  const mutation = useMutation((addData: FieldValues) => postApi(addData), {
     onSuccess: () => {
       queryClient.invalidateQueries('postList');
       navigate('/')
     },
+    onError: () => {
+
+    }
   });
   const saveBtnClick = (data: FieldValues) => {
     const formData = new FormData();
     files.forEach((file) => {
       formData.append('image', file);
     });
-    formData.append('title', data.title)
-    formData.append('content', data.content)
-    formData.append('template', data.template)
+    const {title, content, template} = data
+    formData.append('title', title)
+    formData.append('content', content)
+    formData.append('template', template)
     mutation.mutate(formData)
   }
 
@@ -143,12 +151,11 @@ function Write() {
         <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
           <StyledInputArea>
             <StyledTemplateArea>
+              <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
+              <label htmlFor="left">Left</label>
 
               <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
               <label htmlFor="center">Center</label>
-
-              <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
-              <label htmlFor="left">Left</label>
 
               <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
               <label htmlFor="right">Right</label>
@@ -162,7 +169,9 @@ function Write() {
             </TextAreaBox>
             <AddImgInput setImgFiles={setFiles} maxNum={4}/>
           </StyledInputArea>
-          <Button type="submit" size="big" bgColor={themeContext.colors.point_0} color="#fff">
+          <Button type="submit"
+                  disabled={!formState.isValid}
+                  size="big" bgColor={themeContext.colors.point_0} color="#fff">
             작성하기
           </Button>
         </form>

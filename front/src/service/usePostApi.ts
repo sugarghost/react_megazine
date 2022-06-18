@@ -1,10 +1,10 @@
-import {authInstance} from './httpClient';
+import {authInstance, defaultInstance} from './httpClient';
 
 const resource = '/posts';
 
 export default {
   get() {
-    return authInstance.get(resource).then((res) => res.data);
+    return defaultInstance.get(resource).then((res) => res.data);
   },
   async post(payload: object) {
     const res = await authInstance.post(`${resource}`, payload,
