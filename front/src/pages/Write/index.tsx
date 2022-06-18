@@ -82,7 +82,7 @@ const TextAreaBox = styled.div`
   textarea {
     min-height: 300px;
     border: 1px solid #dcdcdc;
-    padding: 20px;
+    padding: 15px 10px;
     font-size: 14px;
     margin: 10px 0 30px;
     width: calc(100% - 100px);
