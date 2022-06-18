@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import Button from "@atoms/Buttons";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useNavigate, useLocation} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
 import {FieldValues, useForm} from "react-hook-form";
 import Input from "@atoms/Input";
@@ -11,6 +11,7 @@ import {useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
 import {useMutation, useQueryClient} from "react-query";
 import Header from "@organisms/Header";
+import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledInputArea = styled.div`
   margin-bottom: 20px;
@@ -112,16 +113,37 @@ export type WriteFormFileds = {
 
 function Write() {
   const queryClient = useQueryClient();
-  const {register, handleSubmit, formState} = useForm<WriteFormFileds>({mode: 'onChange'});
+  const {register, handleSubmit, formState, setValue} = useForm<WriteFormFileds>({mode: 'onChange'});
   const [files, setFiles] = useState<File[]>([])
   const token = useRecoilValue(userToken)
-  const postApi = usePostApi.post
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as { post: PostListType };
+  // 넘어온 post 파라미터 값이 있으면 수정 모드
   const themeContext = useContext(ThemeContext);
+
+  // 넘어온 post 파라미터 확인 코드
+  // true = 추가 모드, false = 수정 모드
+  const writeType = !state?.post;
+  const [selectedTemplate, setSelectedTemplate] = React.useState<number>(state?.post.template);
+
+  const isRadioSelected = (value: number): boolean => selectedTemplate === value;
+  const handleRadioClick = (e: React.ChangeEvent<HTMLInputElement>):
+    void => setSelectedTemplate(parseInt(e.currentTarget.value,10))
+
+
+  // 수정모드인 경우 title에 기본값 넣어줌
+  if (!writeType) {
+    setValue("title", state?.post.title);
+  }
+
+
+  const postApi = usePostApi.post;
   if (!token) {
     alert('로그인이 필요한 페이지입니다.')
     return <Navigate to="/login" replace/>;
   }
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const mutation = useMutation((addData: FieldValues) => postApi(addData), {
     onSuccess: () => {
@@ -132,6 +154,7 @@ function Write() {
 
     }
   });
+
   const saveBtnClick = (data: FieldValues) => {
     const formData = new FormData();
     files.forEach((file) => {
@@ -155,13 +178,16 @@ function Write() {
           <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
             <StyledInputArea>
               <StyledTemplateArea>
-                <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
+                <input id="left" {...register("template", {required: true})} type="radio" value={1}
+                       checked={isRadioSelected(1)} onChange={handleRadioClick}/>
                 <label htmlFor="left">Left</label>
 
-                <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
+                <input id="center" {...register("template", {required: true})} type="radio" value={2}
+                       checked={isRadioSelected(2)} onChange={handleRadioClick}/>
                 <label htmlFor="center">Center</label>
 
-                <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
+                <input id="right" {...register("template", {required: true})} type="radio" value={3}
+                       checked={isRadioSelected(3)} onChange={handleRadioClick}/>
                 <label htmlFor="right">Right</label>
               </StyledTemplateArea>
               <StyledTitleBox>
@@ -169,7 +195,8 @@ function Write() {
               </StyledTitleBox>
               <TextAreaBox>
                 <label htmlFor="content">내용</label>
-                <textarea {...register('content', {required: true})} />
+                <textarea {...register('content', {required: true})}
+                          defaultValue={state?.post.content}/>
               </TextAreaBox>
               <AddImgInput setImgFiles={setFiles} maxNum={4}/>
             </StyledInputArea>
