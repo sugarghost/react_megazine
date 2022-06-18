@@ -1,11 +1,11 @@
 import {FieldValues} from "react-hook-form";
-import {authInstance, defaultInstance} from './httpClient';
+import {authInstance} from './httpClient';
 
 const resource = '/posts';
 
 export default {
   get() {
-    return defaultInstance.get(resource).then((res) => res.data);
+    return authInstance.get(resource).then((res) => res.data);
   },
   async post(payload: object) {
     const res = await authInstance.post(`${resource}`, payload,

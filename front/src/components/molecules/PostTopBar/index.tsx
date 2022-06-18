@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import UserThumb,{UserThumbType} from "@molecules/userThumb";
 import {useMutation,useQueryClient} from "react-query";
 import usePostApi from "@service/usePostApi";
-import UserThumb,{PostTopBarType} from "@molecules/userThumb";
+
 import timeForToday from "@utils/Time/time"
 
 const StyledCardTopBarArea = styled.div`
@@ -29,9 +29,10 @@ const StyledPostInfo = styled.div`
   }
 `
 interface PostTopBarType<T> extends UserThumbType{
-  postId :T
+  postId :T,
+  createdAt:Date,
 }
-function PostTopBar<T>({userName, src, alt, postId, createdAt,post}:PostTopBarType<T>){
+function PostTopBar<T>({userName, src, alt, postId, createdAt, post}:PostTopBarType<T>){
   const themeContext = useContext(ThemeContext);
   const queryClient = useQueryClient()
   const deletePostApi = usePostApi.delete
@@ -61,11 +62,10 @@ function PostTopBar<T>({userName, src, alt, postId, createdAt,post}:PostTopBarTy
         <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
                 onClick={modifyPost}
                 color={themeContext.colors.point_0}>수정</Button>
-        <Button size="xsmall" bgColor={themeContext.colors.point_4} round="10px"
+        <Button size="xsmall" onClick={deleteCallBack} bgColor={themeContext.colors.point_4} round="10px"
                 color={themeContext.colors.point_0}>삭제</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>
   )
 }
-
 export default PostTopBar
