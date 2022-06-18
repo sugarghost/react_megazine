@@ -19,6 +19,7 @@ const StyledPostUnit = styled.article`
 function Post({post}: { post: PostListType }) {
   const {
     id,
+    email,
     content,
     likeCount,
     likeByMe,
@@ -34,7 +35,7 @@ function Post({post}: { post: PostListType }) {
   return (
     <StyledPostUnit key={id}>
       <PostTopBar createdAt={createdAt} post={post} userName={nickname} postId={id} alt={nickname}
-                  src={profileImageUrl}/>
+                  src={profileImageUrl} userEmail={email}/>
       <PostContent content={content} src={imageSrc} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}

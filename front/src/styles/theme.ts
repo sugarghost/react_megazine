@@ -13,7 +13,7 @@ const colors = {
   point_2: '#b887c2',
   point_3: '#e8a8c4',
   point_4: '#bbb0ff',
-  point_4_1: '#cec6ff',
+  point_4_1: '#dcd6ff',
   point_5: '#cbddf6',
   point_6: '#f0ebfd',
   gray_0: '#e3e3e3',
