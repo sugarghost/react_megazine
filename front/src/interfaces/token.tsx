@@ -1,6 +1,6 @@
 export interface TokenType {
-  email: string;
   nickname: string;
+  sub: string;// email
   exp: number;
   // whatever else is in the JWT.
 }

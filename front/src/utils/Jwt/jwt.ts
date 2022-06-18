@@ -24,7 +24,7 @@ export const isExp = (token: string) => {
 
 export const getEmail = (token: string) => {
   const decode = jwtDecode<TokenType>(token);
-  return decode.email;
+  return decode.sub;
 }
 export const getNickname = (token: string) => {
   const decode = jwtDecode<TokenType>(token);

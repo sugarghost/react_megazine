@@ -1,6 +1,7 @@
 export interface PostListType {
-  "nickname": string;
   "id": number;
+  "nickname":  string;
+  "email":  string;
   "title": string;
   "content": string;
   "imageUrl": string;
