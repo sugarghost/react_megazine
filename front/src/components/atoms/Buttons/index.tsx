@@ -10,11 +10,13 @@ export interface StyledButtonProps {
   flex?: number | 'auto';
   color?: string;
   size?: 'xsmall'|'small' | 'normal' | 'big';
+  type?: 'button' | 'submit';
   outline?: string;
   bgColor?: string;
   transparent?: boolean;
-  type?: 'button' | 'submit';
   round?:string;
+
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   [prop: string]: any;
 }
 const StyledButton = styled.button<StyledButtonProps>`
@@ -66,6 +68,7 @@ function Button({
                   type = 'button',
                   round,
                   onClick,
+                  disabled,
                   ...props
                 }: ButtonProps) {
   const commonProps = {
@@ -76,12 +79,12 @@ function Button({
     bgColor,
     transparent,
     type,
-    round,
+    round
   };
 
   const onClickEvent = onClick
-  return <StyledButton {...commonProps} {...props}
-                       onClick={onClickEvent}>{children}</StyledButton>
+  return <StyledButton {...commonProps} disabled={disabled}
+                       {...props} onClick={onClickEvent}>{children}</StyledButton>
 }
 
 export default Button;
