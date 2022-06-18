@@ -1,8 +1,10 @@
 import axios from "axios";
-// "http://3.39.124.255:8080";; 소이님
-// "http://15.164.93.211"; ㅇ유진님
-const API_DEV = "http://15.164.93.211";
-const API_PRODUCT ="http://15.164.93.211";
+
+const soy = "http://3.39.124.255:8080";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const yujin = "http://15.164.93.211";
+const API_DEV = soy
+const API_PRODUCT = soy
 const baseURL = process.env.NODE_ENV === "development" ? API_DEV : API_PRODUCT;
 
 const getToken = (tokenName: string) => {
@@ -15,8 +17,6 @@ const getToken = (tokenName: string) => {
     }
   }
 }
-const instance = axios.create({timeout:10000, baseURL: `${baseURL}/api`});
-
 const axiosApi = (url: string, options?: object) => {
   const instanceDefault = axios.create({
     baseURL: `${url}/api`,
@@ -25,14 +25,15 @@ const axiosApi = (url: string, options?: object) => {
   return instanceDefault;
 };
 
-const axiosAuthApi = (url: string) => {
-  const token = getToken('userToken')
-  instance.interceptors.request.use(
+const authTokenInstance = axios.create({timeout:10000, baseURL: `${baseURL}/api`});
+
+authTokenInstance.interceptors.request.use(
     (config)=>{
+
+      const token = getToken('userToken')
       if(token) {
-        config.headers = {'X-AUTH-TOKEN': `${token}`}
+        config.headers = {'X-AUTH-TOKEN': `${token}`,}
       }
-      config.url = url
       try{
         return config
       }catch(err){
@@ -41,10 +42,6 @@ const axiosAuthApi = (url: string) => {
       return config
     }
   )
-  return instance;
-};
-
-
 
 export const defaultInstance = axiosApi(baseURL);
-export const authInstance = axiosAuthApi(baseURL);
+export const authInstance = authTokenInstance;

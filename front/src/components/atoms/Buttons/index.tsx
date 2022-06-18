@@ -68,7 +68,6 @@ function Button({
                   type = 'button',
                   round,
                   onClick,
-                  disabled,
                   ...props
                 }: ButtonProps) {
   const commonProps = {
@@ -83,8 +82,8 @@ function Button({
   };
 
   const onClickEvent = onClick
-  return <StyledButton {...commonProps} disabled={disabled}
-                       {...props} onClick={onClickEvent}>{children}</StyledButton>
+  return <StyledButton  onClick={onClickEvent} {...commonProps}
+                       {...props}>{children}</StyledButton>
 }
 
 export default Button;

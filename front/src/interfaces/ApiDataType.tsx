@@ -7,7 +7,7 @@ export interface PostListType {
   "likeByMe": boolean;
   "likeCount": number;
   "view_count": number;
-  "createdAt": string;
-  "modifiedAt": string;
+  "createdAt": Date;
+  "modifiedAt": Date;
   "profileImageUrl":string;
   "template": "Right" | "Left" | "Center"}
