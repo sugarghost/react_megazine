@@ -102,7 +102,7 @@ function RegisterForm() {
 
   const onChangeNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
-    if (e.target.value.length < 2 || e.target.value.length > 5) {
+    if (e.target.value.length < 2 || e.target.value.length > 10) {
       setNicknameMessage('2글자 이상 10글자 미만으로 입력해주세요.');
       setIsNickname(false);
     } else {
