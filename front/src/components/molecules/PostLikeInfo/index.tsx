@@ -1,9 +1,11 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback} from "react";
 import styled from "styled-components";
 import Text, {TextProps} from "@atoms/Text";
 import LikeButton, {LikeByMe} from "@atoms/LikeButton";
 import {useMutation, useQueryClient} from "react-query";
 import usePostApi from "@service/usePostApi";
+import {useRecoilValue} from "recoil";
+import userToken from "@recoil/userAtoms";
 
 const StyledLikeContainer = styled.div`
   display: flex;
@@ -26,22 +28,24 @@ export interface PostLikeInfoType<V> extends LikeByMe, TextProps {
 function PostLikeInfo<V>({likeByMe, postId, ...props}: PostLikeInfoType<V>) {
   const {content} = props
   const likePostApi = usePostApi.likePost
-  const toggle = (data: boolean) => !data
   const queryClient = useQueryClient()
-  const [postLike, setPostLike] = useState(likeByMe)
+  const token = useRecoilValue(userToken)
   const likeMutation = useMutation((id: V) => likePostApi(id), {
     onSuccess: () => {
       queryClient.invalidateQueries('postList');
     },
   });
-  const callBackToggleLike = useCallback(()=>{
-    const likeState = toggle(postLike)
-    setPostLike(likeState)
+  const callBackToggleLike = useCallback((event:any)=>{
+    if (!token) {
+      event.preventDefault()
+      alert('로그인 후 이용 가능합니다')
+      return false
+    }
     likeMutation.mutate(postId)
-  },[likeMutation, postId, postLike])
+  },[likeMutation, postId , token])
   return (
     <StyledLikeContainer>
-      <LikeButton likeByMe={postLike} onClick={callBackToggleLike}/>
+      <LikeButton likeByMe={likeByMe} onClick={(event)=>callBackToggleLike(event)}/>
       <Text content={`${content}`}/>
     </StyledLikeContainer>
   )

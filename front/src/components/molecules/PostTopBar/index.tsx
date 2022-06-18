@@ -48,9 +48,10 @@ function PostTopBar<T>({userName, src, alt, postId, createdAt}:PostTopBarType<T>
       <UserThumb alt={alt} src={src} userName={userName}/>
       <StyledPostInfo>
         <p>{timeForToday(createdAt)}</p>
+
         <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
                 color={themeContext.colors.point_0}>수정</Button>
-        <Button size="xsmall" onClick={deleteCallBack} bgColor={themeContext.colors.point_4} round="10px"
+        <Button size="xsmall" onClick={deleteCallBack} bgColor={themeContext.colors.point_4_1} round="10px"
                 color={themeContext.colors.point_0}>삭제</Button>
       </StyledPostInfo>
     </StyledCardTopBarArea>
