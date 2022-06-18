@@ -9,8 +9,9 @@ export const postListState = atom<PostListType[]>({
   // default에는 임의의 데이터를 넣어줍시다.
   default: [
     {
-      "nickname": "name",
       "id": 0,
+      "nickname": "name",
+      "email": "test@test.com",
       "title": "title",
       "content": "content",
       "imageUrl": "https://c.ndtvimg.com/2020-08/h5mk7js_cat-generic_625x300_28_August_20.jpg",

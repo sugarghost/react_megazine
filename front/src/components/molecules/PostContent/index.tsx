@@ -17,7 +17,7 @@ const StyledCardArea = styled.div<TemplateType>`
     return css`
         justify-content: left;
         &>*{
-          width:50%
+          flex:1;
         }
       `
   }
@@ -26,7 +26,7 @@ const StyledCardArea = styled.div<TemplateType>`
         justify-content: left;
         flex-direction: row-reverse;
         &>*{
-          width:50%
+          flex:1;
         }
       `
   }
@@ -36,6 +36,7 @@ const StyledCardArea = styled.div<TemplateType>`
 const StyledTextArea = styled.div`
   padding:15px;
   p{
+    word-break: break-all;
     line-height:1.6;
   }
 `
@@ -48,9 +49,11 @@ const StyledFigureArea = styled.div`
 function PostContent({content, alt, src,template}:PostContentTYpe){
   return (
     <StyledCardArea template={template}>
-      <StyledFigureArea>
-        <Figure alt={alt} src={src} height="100%"/>
-      </StyledFigureArea>
+      {src !== undefined && src !== null &&
+        <StyledFigureArea>
+          <Figure alt={alt} src={src} height="100%"/>
+        </StyledFigureArea>
+      }
       <StyledTextArea>
         <Text content={content}/>
       </StyledTextArea>

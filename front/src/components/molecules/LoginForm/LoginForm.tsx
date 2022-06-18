@@ -67,6 +67,7 @@ function LoginForm() {
       } else {
         await setUserToken(res.data.userToken);
         navigate('/');
+
       }
     },
     onError: async (res: FieldValues) => {
