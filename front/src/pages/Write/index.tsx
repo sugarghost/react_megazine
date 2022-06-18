@@ -10,6 +10,7 @@ import Title from "@atoms/Title";
 import {useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
 import {useMutation, useQueryClient} from "react-query";
+import Header from "@organisms/Header";
 
 const StyledInputArea = styled.div`
   margin-bottom: 20px;
@@ -145,38 +146,42 @@ function Write() {
 
 
   return (
-    <StyledFormContainer>
-      <Title content="글 작성하기" importance="h2"/>
-      <StyledFormBody>
-        <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
-          <StyledInputArea>
-            <StyledTemplateArea>
-              <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
-              <label htmlFor="left">Left</label>
+    <>
+      <Header/>
 
-              <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
-              <label htmlFor="center">Center</label>
+      <StyledFormContainer>
+        <Title content="글 작성하기" importance="h2"/>
+        <StyledFormBody>
+          <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
+            <StyledInputArea>
+              <StyledTemplateArea>
+                <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
+                <label htmlFor="left">Left</label>
 
-              <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
-              <label htmlFor="right">Right</label>
-            </StyledTemplateArea>
-            <StyledTitleBox>
-              <Input id="title" register={register('title', {required: true})}>제목</Input>
-            </StyledTitleBox>
-            <TextAreaBox>
-              <label htmlFor="content">내용</label>
-              <textarea {...register('content', {required: true})} />
-            </TextAreaBox>
-            <AddImgInput setImgFiles={setFiles} maxNum={4}/>
-          </StyledInputArea>
-          <Button type="submit"
-                  disabled={!formState.isValid}
-                  size="big" bgColor={themeContext.colors.point_0} color="#fff">
-            작성하기
-          </Button>
-        </form>
-      </StyledFormBody>
-    </StyledFormContainer>
+                <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
+                <label htmlFor="center">Center</label>
+
+                <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
+                <label htmlFor="right">Right</label>
+              </StyledTemplateArea>
+              <StyledTitleBox>
+                <Input id="title" register={register('title', {required: true})}>제목</Input>
+              </StyledTitleBox>
+              <TextAreaBox>
+                <label htmlFor="content">내용</label>
+                <textarea {...register('content', {required: true})} />
+              </TextAreaBox>
+              <AddImgInput setImgFiles={setFiles} maxNum={4}/>
+            </StyledInputArea>
+            <Button type="submit"
+                    disabled={!formState.isValid}
+                    size="big" bgColor={themeContext.colors.point_0} color="#fff">
+              작성하기
+            </Button>
+          </form>
+        </StyledFormBody>
+      </StyledFormContainer>
+    </>
   )
 }
 

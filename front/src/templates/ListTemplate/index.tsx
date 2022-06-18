@@ -5,17 +5,22 @@ import Header from "@organisms/Header";
 import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledPostListContainer = styled.div`
-  max-width:600px;
-  margin:0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 `
-function ListTemplate({listData}:{listData:PostListType[]}){
-  return(
-    <StyledPostListContainer>
+
+function ListTemplate({listData}: { listData: PostListType[] }) {
+  return (
+    <>
       <Header/>
-      {
-        listData.map((data)=><Post key={data.id} post={data}/>)
-      }
-    </StyledPostListContainer>
+      <StyledPostListContainer>
+        {
+          listData.map((data) => <Post key={data.id} post={data}/>)
+        }
+      </StyledPostListContainer>
+    </>
+
   )
 }
+
 export default ListTemplate
