@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   border-radius: 20px;
   transform:translateX(-50%);
   right: 0;
-  height: 40px;
+  height: 50px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,0.15);
 `

@@ -10,5 +10,4 @@ export interface PostListType {
   "createdAt": string;
   "modifiedAt": string;
   "profileImageUrl":string;
-  "template": "right" | "left" | "center"
-}
+  "template": "Right" | "Left" | "Center"}

@@ -14,7 +14,7 @@ function List() {
         setPostList(data)
       },
       onError: e => {
-        console.log(e)
+        console.log(e,'error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
       }
     }
   )

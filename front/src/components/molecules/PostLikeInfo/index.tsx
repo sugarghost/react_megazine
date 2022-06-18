@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import styled from "styled-components";
 import Text, {TextProps} from "@atoms/Text";
 import LikeButton, {LikeByMe} from "@atoms/LikeButton";
@@ -34,15 +34,14 @@ function PostLikeInfo<V>({likeByMe, postId, ...props}: PostLikeInfoType<V>) {
       queryClient.invalidateQueries('postList');
     },
   });
-  const togglePostLike = () => {
+  const callBackToggleLike = useCallback(()=>{
     const likeState = toggle(postLike)
     setPostLike(likeState)
     likeMutation.mutate(postId)
-
-  }
+  },[likeMutation, postId, postLike])
   return (
     <StyledLikeContainer>
-      <LikeButton likeByMe={postLike} onClick={togglePostLike}/>
+      <LikeButton likeByMe={postLike} onClick={callBackToggleLike}/>
       <Text content={`${content}`}/>
     </StyledLikeContainer>
   )
