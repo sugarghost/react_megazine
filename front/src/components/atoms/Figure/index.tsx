@@ -5,7 +5,7 @@ export interface ImgProps {
   borderSize?: number;
   round?: number;
   alt: string;
-  src: string | null;
+  src: string | undefined;
   width?: string;
   height?: string;
   fit?: boolean;
@@ -28,7 +28,7 @@ const StyledFigure = styled.figure<ImgProps>`
   }
 `
 
-function Figure({round=0,borderSize=0,alt = "", src = "/",width,height,fit = true}: ImgProps) {
+function Figure({round=0,borderSize=0,alt = "", src,width,height,fit = true}: ImgProps) {
   const figureProps = {
     borderSize,
     round,
@@ -38,7 +38,7 @@ function Figure({round=0,borderSize=0,alt = "", src = "/",width,height,fit = tru
   }
   return (
     <StyledFigure {...figureProps}>
-      {src !== null && <img alt={alt} src={src}/>}
+      <img alt={alt} src={src}/>
     </StyledFigure>
   )
 }
