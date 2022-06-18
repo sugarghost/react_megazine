@@ -34,13 +34,21 @@ function App() {
           <Container>
             <Routes>
               <Route path='/' element={<PostList/>}/>
-              <Route path='/register' element={<Register/>}/>
               <Route path='/mypage' element={<Mypage/>}/>
-              {/* 인증을 반드시 하지 않아야만 접속 가능한 페이지 정의 */}
+              {/* 접근시 인증이 안 되어있어야 함 */}
               <Route element={<PrivateRoutes authentication={false}/>}>
                 <Route path="/login" element={<Login/>} />
               </Route>
-              <Route path='/write' element={<Write/>}/>
+
+              <Route element={<PrivateRoutes authentication={false}/>}>
+                <Route path='/register' element={<Register/>}/>
+              </Route>
+
+              {/* 접근시 인증이 되어있어야 함 */}
+              <Route element={<PrivateRoutes authentication/>}>
+                <Route path='/write' element={<Write/>}/>
+              </Route>
+              
             </Routes>
           </Container>
         </ThemeProvider>
