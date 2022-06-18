@@ -1,4 +1,3 @@
-import {FieldValues} from "react-hook-form";
 import {authInstance} from './httpClient';
 
 const resource = '/posts';
@@ -13,9 +12,8 @@ export default {
     );
     return res
   },
-  async modifyPost(payload: FieldValues) {
-    console.log("payload is ", payload, `${resource}/${payload}`)
-    const res = await authInstance.put(`${resource}/${payload.postId}`, payload,
+  async modifyPost(payload: FormData) {
+    const res = await authInstance.put(`${resource}/${payload.get('postId')}`, payload,
       {headers: {'Content-Type': 'multipart/form-data'}}
     );
     return res
