@@ -20,6 +20,9 @@ const NavContainer = styled.div`
     font-size: 22px;
     margin-bottom: 2px;
   }
+  a:nth-child(3).active{ //로그인,로그아웃 버튼 색 고정
+    color:rgb(85, 85, 85) !important;
+  }
 `
 
 function Navi() {
