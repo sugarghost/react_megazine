@@ -17,30 +17,42 @@ export default function PrivateRoutes({authentication}:PrivateRouteProps):React.
   const token = localToken ? JSON.parse(localToken).userToken : "";
   const ReactSwal = withReactContent(Swal)
   const isAuthenticated = isExist(token);
-  console.log("router has called", token , isAuthenticated);
 
+  // authentication = true : 이 페이지에 접근하려면 인증이 되어있어야 함
+  // authentication = false : 이 페이지에 접근하려면 인증이 안 되어있어야 함
   if (authentication) {
-    // 인증이 반드시 필요한 페이지
-    // 인증을 안했을 경우 로그인 페이지로, 했을 경우 해당 페이지로
-    return (isAuthenticated === null || isAuthenticated === false) ? <Navigate to="/login"/> : <Outlet/>;
-  }
-  // 인증이 반드시 필요없는 페이지
-
-  // 인증이 필요없는 페이지에서 안되있는 경우 페이지로 이동
-  if(isAuthenticated === null || isAuthenticated === false){
+    // true, 인증이 되어있어야함
+    if(isAuthenticated === false){
+      // 인증이 되어있어야하는데 안되어있음
+      ReactSwal.fire({
+        title: <p>로그인 필요 합니다!</p>,
+        html: <p>로그인으로 이동합니다</p>,
+        icon: 'info',
+        timer: 3000
+      });
+      return <Navigate to="/login"/>
+    }
+    // 인증이 필요한 페이지에 인증된 상태로 접근
     return <Outlet/>
   }
-  // 인증이 필요없는 페이지에서 인증이 되어있는 경우 메인 페이지로
-  
-  // 사용자에게 3초간 유지되는 알림창을 표시
-  // 화면 이동은 미리 진행됨
-  ReactSwal.fire({
-    title: <p>이미 로그인 되어 있습니다!</p>,
-    html: <p>메인으로 이동합니다!</p>,
-    icon: 'info',
-    timer: 3000
-  });
-  
-  // 문제가 생겨서 처리가 안된 경우 main으로 이동
-  return <Navigate to='/'/>
+  // false, 인증이 안되어있어야함
+
+  if(isAuthenticated === true){
+    // 인증이 안되어있어야 하는데 되어 있음
+
+    // 사용자에게 3초간 유지되는 알림창을 표시
+    // 화면 이동은 미리 진행됨
+    ReactSwal.fire({
+      title: <p>이미 로그인 되어 있습니다!</p>,
+      html: <p>메인으로 이동합니다!</p>,
+      icon: 'info',
+      timer: 3000
+    });
+    // 인증이 필요없는 페이지에서 인증이 되어있는 경우 메인 페이지로
+    return <Navigate to='/'/>
+  }
+
+
+  // 인증이 필요없는 페이지에서 인증이 안되어 있으니 목표 위치로 보내줌줌
+ return <Outlet/>
 };

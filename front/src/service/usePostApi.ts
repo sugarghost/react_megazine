@@ -12,6 +12,12 @@ export default {
     );
     return res
   },
+  async modifyPost(payload: FormData) {
+    const res = await authInstance.put(`${resource}/${payload.get('postId')}`, payload,
+      {headers: {'Content-Type': 'multipart/form-data'}}
+    );
+    return res
+  },
   async likePost(payload:any) {
     const res = await authInstance.post(`${resource}/${payload}/like`
     );

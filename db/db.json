@@ -11,7 +11,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "center"
+      "template": 2
     },
     {
       "nickname": "name",
@@ -24,7 +24,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "left"
+      "template": 1
     },
     {
       "nickname": "name",
@@ -37,7 +37,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "right"
+      "template": 3
     },
     {
       "nickname": "name",
@@ -50,7 +50,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "center"
+      "template": 2
     },
     {
       "nickname": "name",
@@ -63,7 +63,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "left"
+      "template": 1
     },
     {
       "nickname": "name",
@@ -76,7 +76,7 @@
       "viewCount": 15,
       "createdAt": "date",
       "modifiedAt": "date",
-      "template": "right"
+      "template": 3
     },
     {
       "id": 6

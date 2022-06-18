@@ -1,10 +1,10 @@
 import React, {useCallback, useContext} from "react";
-import styled, {ThemeContext} from "styled-components";
+import styled,{ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
-import UserThumb, {UserThumbType} from "@molecules/userThumb";
-import {useMutation, useQueryClient} from "react-query";
+import {useNavigate} from 'react-router-dom';
+import UserThumb,{UserThumbType} from "@molecules/userThumb";
+import {useMutation,useQueryClient} from "react-query";
 import usePostApi from "@service/usePostApi";
-
 import timeForToday from "@utils/Time/time"
 import {useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
@@ -52,11 +52,11 @@ interface PostTopBarType<T> extends UserThumbType {
   createdAt: Date,
   userEmail: string
 }
-
-function PostTopBar<T>({userName, userEmail, src, alt, postId, createdAt}: PostTopBarType<T>) {
+function PostTopBar<T>({userName,userEmail, src, alt, postId, createdAt, post}:PostTopBarType<T>){
   const themeContext = useContext(ThemeContext);
   const queryClient = useQueryClient()
   const deletePostApi = usePostApi.delete
+  const navigate = useNavigate();
 
   const token = useRecoilValue(userToken)
   const deleteMutation = useMutation((id: T) => deletePostApi(id), {
@@ -64,6 +64,7 @@ function PostTopBar<T>({userName, userEmail, src, alt, postId, createdAt}: PostT
       queryClient.invalidateQueries('postList');
     },
   });
+  /* useCallback으로 안싸면 자기 혼자 실행되고 난리남 */
   const checkMyPost = () => {
     if (token === '') return false
     return getEmail(token) === userEmail
@@ -72,7 +73,9 @@ function PostTopBar<T>({userName, userEmail, src, alt, postId, createdAt}: PostT
   const deleteCallBack = useCallback(() => {
     deleteMutation.mutate(postId)
   }, [deleteMutation, postId])
-
+  const modifyPost = () => {
+    navigate('/write',  {state:{post}});
+  };
   return (
     <StyledCardTopBarArea>
       <StyledPostInfo>
@@ -84,7 +87,8 @@ function PostTopBar<T>({userName, userEmail, src, alt, postId, createdAt}: PostT
         checkMyPost()
         &&
         <StyledButtonArea>
-          <Button size="xsmall" bgColor={themeContext.colors.point_6} round="10px"
+          <Button size="xsmall" onClick={modifyPost}
+                  bgColor={themeContext.colors.point_6} round="10px"
                   color={themeContext.colors.point_0}>수정</Button>
           <Button size="xsmall" onClick={deleteCallBack} bgColor={themeContext.colors.point_4_1} round="10px"
                   color={themeContext.colors.point_0}>삭제</Button>
@@ -93,5 +97,4 @@ function PostTopBar<T>({userName, userEmail, src, alt, postId, createdAt}: PostT
     </StyledCardTopBarArea>
   )
 }
-
 export default PostTopBar
