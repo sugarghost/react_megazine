@@ -55,9 +55,15 @@ function Navi() {
       </NavButton>
       */}
       {!token ?
+        <>
         <NavButton linkUrl="/login">
           <FontAwesomeIcon icon="right-to-bracket"/>
         </NavButton>
+
+        <NavButton linkUrl="/register">
+          <FontAwesomeIcon icon="user-plus"/>
+        </NavButton>
+        </>
         :
         <NavButton linkUrl="" onClick={logout}>
           <FontAwesomeIcon icon="right-from-bracket"/>
