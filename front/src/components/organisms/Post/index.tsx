@@ -30,10 +30,9 @@ function Post({post}: { post: PostListType }) {
   }= post
   const profileImageUrl ="https://ichef.bbci.co.uk/ne" +
     "ws/976/cpsprodpb/41CF/production/_109474861_angrycat-index-getty3-3.jpg"
-  console.log(post)
   return (
     <StyledPostUnit key={id}>
-      <PostTopBar userName={nickname} alt={nickname} createdAt={createdAt} src={profileImageUrl}/>
+      <PostTopBar post={post} userName={nickname} alt={nickname} createdAt={createdAt} src={profileImageUrl}/>
       <PostContent content={content} src={`http://${imageUrl}`} alt={title} template={template}/>
       <PostLikeInfo content={likeCount}
                     likeByMe={likeByMe}

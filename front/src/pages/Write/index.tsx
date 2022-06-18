@@ -1,15 +1,18 @@
 import React, {useContext, useState} from "react";
 import Button from "@atoms/Buttons";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
 import {FieldValues, useForm} from "react-hook-form";
 import Input from "@atoms/Input";
 import usePostApi from "@service/usePostApi";
 import styled, {ThemeContext} from "styled-components";
 import Title from "@atoms/Title";
+/*
 import { useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
-import {useMutation,useQueryClient} from "react-query";
+*/
+import {useMutation, useQueryClient} from "react-query";
+import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledInputArea = styled.div`
   margin-bottom: 20px;
@@ -57,13 +60,14 @@ const StyledTemplateArea = styled.div`
 
   label {
     width: 100px;
-    cursor:pointer;
+    cursor: pointer;
     margin-bottom: 20px;
     justify-content: center;
   }
-  input:checked + label{
-    font-weight:bold;
-    color:${({ theme }) => theme.colors.point_2};;
+
+  input:checked + label {
+    font-weight: bold;
+    color: ${({theme}) => theme.colors.point_2};;
   }
 `
 const TextAreaBox = styled.div`
@@ -105,26 +109,34 @@ export type WriteFormFileds = {
   template: string;
 };
 
+
 function Write() {
   const queryClient = useQueryClient();
   const {register, handleSubmit} = useForm<WriteFormFileds>();
   const [files, setFiles] = useState<File[]>([])
-  const token = useRecoilValue(userToken)
-  const postApi = usePostApi.post
-  const navigate = useNavigate()
+  // const token = useRecoilValue(userToken)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as { post: PostListType };
+  // 넘어온 post 파라미터 값이 있으면 수정 모드
   const themeContext = useContext(ThemeContext);
+  // 수정이냐 추가냐에 따라서 API 기능 제어
+  const postApi =  usePostApi.post;
+  /*
   if (!token) {
     alert('로그인이 필요한 페이지입니다.')
     return <Navigate to="/login" replace/>;
   }
+  */
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const mutation = useMutation((addData: FieldValues) =>postApi(addData), {
+  const mutation = useMutation((addData: FieldValues) => postApi(addData), {
     onSuccess: () => {
       queryClient.invalidateQueries('postList');
       navigate('/')
     },
   });
+
   const saveBtnClick = (data: FieldValues) => {
     const formData = new FormData();
     files.forEach((file) => {
@@ -143,13 +155,16 @@ function Write() {
           <StyledInputArea>
             <StyledTemplateArea>
 
-              <input id="center" {...register("template", {required: true})} type="radio" value="center"/>
+              <input id="center" {...register("template", {required: true})}
+                     type="radio" value="center" checked={state?.post.template === "center"}/>
               <label htmlFor="center">Center</label>
 
-              <input id="left" {...register("template", {required: true})} type="radio" value="left"/>
+              <input id="left" {...register("template", {required: true})}
+                     type="radio" value="left" checked={state?.post.template === "left"}/>
               <label htmlFor="left">Left</label>
 
-              <input id="right" {...register("template", {required: true})} type="radio" value="right"/>
+              <input id="right" {...register("template", {required: true})}
+                     type="radio" value="right" checked={state?.post.template === "right"}/>
               <label htmlFor="right">Right</label>
             </StyledTemplateArea>
             <StyledTitleBox>
@@ -157,7 +172,7 @@ function Write() {
             </StyledTitleBox>
             <TextAreaBox>
               <label htmlFor="content">내용</label>
-              <textarea {...register('content', {required: true})} />
+              <textarea {...register('content', {required: true})} defaultValue={state?.post.content}/>
             </TextAreaBox>
             <AddImgInput setImgFiles={setFiles} maxNum={4}/>
           </StyledInputArea>
