@@ -31,7 +31,7 @@ function Post({post}: { post: PostListType }) {
   } = post
   const profileImageUrl = "https://ichef.bbci.co.uk/ne" +
     "ws/976/cpsprodpb/41CF/production/_109474861_angrycat-index-getty3-3.jpg"
-  const imageSrc = imageUrl === null ? null : `http://${imageUrl}`
+  const imageSrc = imageUrl === null ? undefined : `http://${imageUrl}`
   return (
     <StyledPostUnit key={id}>
       <PostTopBar createdAt={createdAt} post={post} userName={nickname} postId={id} alt={nickname}
