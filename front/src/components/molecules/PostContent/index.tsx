@@ -3,7 +3,7 @@ import Figure, {ImgProps} from "@atoms/Figure";
 import Text, {TextProps} from "@atoms/Text";
 import styled,{css} from "styled-components";
 
-interface TemplateType{template:'left'|'center'|'right' }
+interface TemplateType{template:'Left'|'Center'|'Right' }
 
 type PostContentTYpe = ImgProps & TextProps & TemplateType
 const StyledCardArea = styled.div<TemplateType>`
@@ -13,7 +13,7 @@ const StyledCardArea = styled.div<TemplateType>`
     width:100%
   }
   ${(props)=>{
-  if(props.template==='left'){
+  if(props.template==='Left'){
     return css`
         justify-content: left;
         &>*{
@@ -21,7 +21,7 @@ const StyledCardArea = styled.div<TemplateType>`
         }
       `
   }
-  if(props.template==='right'){
+  if(props.template==='Right'){
     return css`
         justify-content: left;
         flex-direction: row-reverse;

@@ -1,17 +1,16 @@
 import React, {useContext, useState} from "react";
 import Button from "@atoms/Buttons";
-import {useNavigate, useLocation} from "react-router-dom";
+import {Navigate, useNavigate, useLocation} from "react-router-dom";
 import AddImgInput from "@molecules/AddImgInput";
 import {FieldValues, useForm} from "react-hook-form";
 import Input from "@atoms/Input";
 import usePostApi from "@service/usePostApi";
 import styled, {ThemeContext} from "styled-components";
 import Title from "@atoms/Title";
-/*
-import { useRecoilValue} from "recoil";
+import {useRecoilValue} from "recoil";
 import userToken from "@recoil/userAtoms";
-*/
 import {useMutation, useQueryClient} from "react-query";
+import Header from "@organisms/Header";
 import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledInputArea = styled.div`
@@ -53,6 +52,9 @@ const StyledFormBody = styled.div`
     border: 1px solid #dcdcdc;
   }
 
+  button:disabled {
+    opacity: .6
+  }
 `
 const StyledTemplateArea = styled.div`
   display: flex;
@@ -109,10 +111,9 @@ export type WriteFormFileds = {
   template: string;
 };
 
-
 function Write() {
   const queryClient = useQueryClient();
-  const {register, handleSubmit} = useForm<WriteFormFileds>();
+  const {register, handleSubmit, formState} = useForm<WriteFormFileds>({mode: 'onChange'});
   const [files, setFiles] = useState<File[]>([])
   // const token = useRecoilValue(userToken)
   const navigate = useNavigate();
@@ -135,6 +136,9 @@ function Write() {
       queryClient.invalidateQueries('postList');
       navigate('/')
     },
+    onError: () => {
+
+    }
   });
 
   const saveBtnClick = (data: FieldValues) => {
@@ -142,46 +146,55 @@ function Write() {
     files.forEach((file) => {
       formData.append('image', file);
     });
-    formData.append('title', data.title)
-    formData.append('content', data.content)
-    formData.append('template', data.template)
+    const {title, content, template} = data
+    formData.append('title', title)
+    formData.append('content', content)
+    formData.append('template', template)
     mutation.mutate(formData)
   }
+
+
   return (
-    <StyledFormContainer>
-      <Title content="글 작성하기" importance="h2"/>
-      <StyledFormBody>
-        <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
-          <StyledInputArea>
-            <StyledTemplateArea>
+    <>
+      <Header/>
 
-              <input id="center" {...register("template", {required: true})}
-                     type="radio" value="center" checked={state?.post.template === "center"}/>
-              <label htmlFor="center">Center</label>
+      <StyledFormContainer>
+        <Title content="글 작성하기" importance="h2"/>
+        <StyledFormBody>
+          <form onSubmit={handleSubmit(saveBtnClick)} encType="multipart/formdata">
+            <StyledInputArea>
+              <StyledTemplateArea>
+                <input id="left" {...register("template", {required: true})} type="radio" value="left"
+                       checked={state?.post.template === "left"}/>
+                <label htmlFor="left">Left</label>
 
-              <input id="left" {...register("template", {required: true})}
-                     type="radio" value="left" checked={state?.post.template === "left"}/>
-              <label htmlFor="left">Left</label>
+                <input id="center" {...register("template", {required: true})} type="radio" value="center"
+                       checked={state?.post.template === "center"}/>
+                <label htmlFor="center">Center</label>
 
-              <input id="right" {...register("template", {required: true})}
-                     type="radio" value="right" checked={state?.post.template === "right"}/>
-              <label htmlFor="right">Right</label>
-            </StyledTemplateArea>
-            <StyledTitleBox>
-              <Input id="title" register={register('title', {required: true})}>제목</Input>
-            </StyledTitleBox>
-            <TextAreaBox>
-              <label htmlFor="content">내용</label>
-              <textarea {...register('content', {required: true})} defaultValue={state?.post.content}/>
-            </TextAreaBox>
-            <AddImgInput setImgFiles={setFiles} maxNum={4}/>
-          </StyledInputArea>
-          <Button type="submit" size="big" bgColor={themeContext.colors.point_0} color="#fff">
-            작성하기
-          </Button>
-        </form>
-      </StyledFormBody>
-    </StyledFormContainer>
+                <input id="right" {...register("template", {required: true})} type="radio" value="right"
+                       checked={state?.post.template === "right"}/>
+                <label htmlFor="right">Right</label>
+              </StyledTemplateArea>
+              <StyledTitleBox>
+                <Input id="title" register={register('title', {required: true})}>제목</Input>
+              </StyledTitleBox>
+              <TextAreaBox>
+                <label htmlFor="content">내용</label>
+                <textarea {...register('content', {required: true})}
+                          defaultValue={state?.post.content}/>
+              </TextAreaBox>
+              <AddImgInput setImgFiles={setFiles} maxNum={4}/>
+            </StyledInputArea>
+            <Button type="submit"
+                    disabled={!formState.isValid}
+                    size="big" bgColor={themeContext.colors.point_0} color="#fff">
+              작성하기
+            </Button>
+          </form>
+        </StyledFormBody>
+      </StyledFormContainer>
+    </>
   )
 }
 

@@ -5,7 +5,7 @@ export interface ImgProps {
   borderSize?: number;
   round?: number;
   alt: string;
-  src: string;
+  src: string | null;
   width?: string;
   height?: string;
   fit?: boolean;
@@ -38,7 +38,7 @@ function Figure({round=0,borderSize=0,alt = "", src = "/",width,height,fit = tru
   }
   return (
     <StyledFigure {...figureProps}>
-      <img alt={alt} src={src}/>
+      {src !== null && <img alt={alt} src={src}/>}
     </StyledFigure>
   )
 }

@@ -1,8 +1,11 @@
-import React, {useContext} from "react";
-import styled, {ThemeContext} from "styled-components";
+import React, {useCallback, useContext} from "react";
+import styled,{ThemeContext} from "styled-components";
 import Button from "@atoms/Buttons";
 import {useNavigate} from 'react-router-dom';
-import UserThumb, {PostTopBarType} from "@molecules/userThumb";
+import UserThumb,{UserThumbType} from "@molecules/userThumb";
+import {useMutation,useQueryClient} from "react-query";
+import usePostApi from "@service/usePostApi";
+import UserThumb,{PostTopBarType} from "@molecules/userThumb";
 import timeForToday from "@utils/Time/time"
 
 const StyledCardTopBarArea = styled.div`
@@ -25,14 +28,30 @@ const StyledPostInfo = styled.div`
     font-size: 12px;
   }
 `
-
-function PostTopBar({userName, src, alt, createdAt, post}: PostTopBarType) {
+interface PostTopBarType<T> extends UserThumbType{
+  postId :T
+}
+function PostTopBar<T>({userName, src, alt, postId, createdAt,post}:PostTopBarType<T>){
   const themeContext = useContext(ThemeContext);
+  const queryClient = useQueryClient()
+  const deletePostApi = usePostApi.delete
   const navigate = useNavigate();
+
+  const deleteMutation = useMutation((id:T) => deletePostApi(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('postList');
+    },
+  });
+  /* useCallback으로 안싸면 자기 혼자 실행되고 난리남 */
+  const deleteCallBack = useCallback(()=>{
+    deleteMutation.mutate(postId)
+  },[deleteMutation,postId])
+
 
   const modifyPost = () => {
     navigate('/write',  {state:{post}});
   };
+
 
   return (
     <StyledCardTopBarArea>
