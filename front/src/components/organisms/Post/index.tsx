@@ -1,10 +1,7 @@
-import React from "react";
-import PostContent from "@molecules/PostContent";
-import PostTopBar from "@molecules/PostTopBar";
+import React, {Suspense, useState} from "react";
 import styled from "styled-components";
-import PostLikeInfo from "@molecules/PostLikeInfo";
+import useIntersectionObserver from "@hooks/useIntersectionObserver"
 import {PostListType} from "../../../interfaces/ApiDataType";
-
 
 const StyledPostUnit = styled.article`
   width: 100%;
@@ -17,6 +14,17 @@ const StyledPostUnit = styled.article`
 `
 
 function Post({post}: { post: PostListType }) {
+
+  const PostTopBar = React.lazy(() => import("@molecules/PostTopBar"));
+  const PostContent = React.lazy(() => import("@molecules/PostContent"));
+  const PostLikeInfo = React.lazy(() => import("@molecules/PostLikeInfo"));
+
+  const [inView, setInView] = useState(false)
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+    if (isIntersecting) setInView(true);
+  };
+  const { setTarget } = useIntersectionObserver({ onIntersect });
+
   const {
     id,
     email,
@@ -34,14 +42,22 @@ function Post({post}: { post: PostListType }) {
   const imageSrc = imageUrl === null ? undefined : `http://${imageUrl}`
   return (
     <StyledPostUnit key={id}>
-      <PostTopBar createdAt={createdAt} post={post} userName={nickname} postId={id} alt={nickname}
-                  src={profileImageUrl} userEmail={email}/>
-      <PostContent content={content} src={imageSrc} alt={title} template={template}/>
-      <PostLikeInfo content={likeCount}
-                    likeByMe={likeByMe}
-                    postId={id}
+      <div ref={setTarget}>
+        <Suspense fallback={<div>loading...</div>}>
+                {inView &&
+                    <>
+                      <PostTopBar createdAt={createdAt} post={post} userName={nickname} postId={id} alt={nickname}
+                                  src={profileImageUrl} userEmail={email}/>
+                      <PostContent content={content} src={imageSrc} alt={title} template={template}/>
+                      <PostLikeInfo content={likeCount}
+                                    likeByMe={likeByMe}
+                                    postId={id}
 
-      />
+                      />
+                    </>
+                }
+        </Suspense>
+      </div>
     </StyledPostUnit>
   )
 }

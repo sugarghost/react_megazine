@@ -9,6 +9,8 @@ import styled, {ThemeContext} from "styled-components";
 import Title from "@atoms/Title";
 import {useMutation, useQueryClient} from "react-query";
 import Header from "@organisms/Header";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import {PostListType} from "../../interfaces/ApiDataType";
 
 const StyledInputArea = styled.div`
@@ -133,6 +135,7 @@ function Write() {
   const state = location.state as { post: PostListType };
   // 넘어온 post 파라미터 값이 있으면 수정 모드
   const themeContext = useContext(ThemeContext);
+  const ReactSwal = withReactContent(Swal)
 
   // 넘어온 post 파라미터 확인 코드
   // true = 추가 모드, false = 수정 모드
@@ -170,8 +173,12 @@ function Write() {
       queryClient.invalidateQueries('postList');
       navigate('/')
     },
-    onError: () => {
-
+    onError: async (res: FieldValues) => {
+      ReactSwal.fire({
+        title: <p>글 작성 실패!</p>,
+        html: <p>{res.response.data.message}</p>,
+        icon: 'error'
+      });
     }
   });
 

@@ -11,6 +11,7 @@ function List() {
 
   const {isLoading} = useQuery(
     'postList', usePostApi.get, {
+      staleTime: Infinity,
       cacheTime: Infinity,
       onSuccess: data => {
         console.log('getData')
